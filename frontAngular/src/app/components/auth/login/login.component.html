@@ -1,0 +1,18 @@
+<div id="container-login" class="container mx-auto m-4" style="width: 40vh;">
+    <div id="login">
+    <div class="card">
+        <div class="card-header h5 text-center"><h4>Login</h4></div>
+        <div class="card-body">
+            <form [formGroup]="formLogin" (submit)="submit()">
+                <input class="form-control" type="text" formControlName="email" placeholder="Email"><br>
+                <input class="form-control" type="password" formControlName="password" placeholder="Password"><br>
+                <button class="btn btn-info btn-block" [disabled]="formLogin.invalid" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="mensaje">
+        <strong>{{mensaje}}</strong>
+    </div>
+    </div>
+    </div>
+    

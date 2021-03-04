@@ -1,0 +1,19 @@
+<div class="row mt-5">
+    <div class="col-md-3">
+<ngb-datepicker class="datepicker" #dp [(ngModel)]="calendario" (navigate)="date = $event.next"></ngb-datepicker>
+    </div>
+    <div class="col-md-9">
+        <app-workout-detail [fecha]="calendario" *ngIf="workoutSelected; else createWorkout"></app-workout-detail>
+        <ng-template #createWorkout> 
+            <app-workout-create [fecha]="calendario"></app-workout-create>
+        </ng-template>
+        
+    </div>
+</div>
+
+
+
+<!--
+<p>{{calendario|json}}</p>
+<p>{{calendario.day}}</p>
+-->

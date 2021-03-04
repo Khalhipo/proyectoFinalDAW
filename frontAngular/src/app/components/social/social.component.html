@@ -1,0 +1,87 @@
+<!--Que salga el nombre, y al pinchar en el nombre salga toda la información-->
+<div class="row">
+    <div class="col-md-6">
+<div class="mx-auto m-4" style="width: 60vh;">
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title"><i class="icono fas fa-user-plus"></i> Añade a tus amigos</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email" (input)="buscarConRetraso()">
+        <li *ngFor="let user of users" class="list-group-item">
+            <div class="container-friend">
+                <div><img class="img-user img-thumbnail" src="{{user.imgSrc ? user.imgSrc : 'assets/images/foto_perfil.jpg'}}"></div>
+                    <div>
+                    <div><strong><i class="fas fa-id-badge"></i></strong> {{user.nombre}}</div>
+                    <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
+                    </div>
+                <div class="btns-friend">
+                    <button class="btn btn-info" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
+                </div>
+                </div>
+        </li>
+    </ul>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="mensaje">
+    <strong>{{mensaje}}</strong>
+</div>
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="card-title"><i class="icono fas fa-users"></i> Lista de amigos</h5>
+    </div>
+    <div class="card-body lista-amigos ">
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let user of friendsUser" class="list-group-item">
+        <div class="container-friend">
+        <div><img class="img-user img-thumbnail" src="{{user.imgSrc ? user.imgSrc : 'assets/images/foto_perfil.jpg'}}"></div>
+            <div>
+            <div><strong><i class="fas fa-id-badge"></i></strong> {{user.nombre}}</div>
+            <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
+            </div>
+        <div class="btns-friend">
+            <button class="btn btn-danger" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
+            <button class="btn-chat btn btn-success" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"></i></button>
+        </div>
+        </div>
+        </li>
+            <div *ngIf="friendsUser.length==0" class="alert alert-info" role="alert">
+                <p>Aún no has añadido ningún amigo</p>
+              </div>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card mx-auto m-4" style="width: 60vh;" *ngIf="userSelected">
+    <div class="card-header">
+        <div class="header-chat">
+            <div>
+              <img  class="img-user-chat img-thumbnail" src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}">
+              <strong>{{userSelected.nombre}}</strong>
+            </div>
+          <button (click)="userSelected = null" class="btn btn-primary"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="chat card-body">
+        <ul *ngIf="mensajesChat.length>0; else chatVacio">
+            <li *ngFor="let message of mensajesChat" class="list-group-item">
+               <span *ngIf="message.idRemitente == userSelected.id;else usuarioLogueado"><strong>{{userSelected.nombre}}:</strong> {{message.mensaje}}</span>
+               <ng-template #usuarioLogueado>
+                <span><strong >Yo:</strong> {{message.mensaje}}</span>
+               </ng-template>
+            </li>
+        </ul>
+        <ng-template #chatVacio>
+            <p class="list-group-item">No ha iniciado ninguna conversación</p>
+        </ng-template>
+    </div>
+    <div class="card-body">
+            <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Escribe tu mensaje aquí...">
+            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-info btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button [disabled]="mensajesChat.length==0" class="btn btn-danger btn-block" (click)="borrarChat(userSelected.id)">Borrar conversación</button>
+    </div>
+</div>
+</div>
+</div>

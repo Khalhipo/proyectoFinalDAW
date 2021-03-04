@@ -1,0 +1,14 @@
+nav {
+    background-color: #9A239E;
+
+}
+
+* {
+    color: #95EB3A;
+    font-weight: bold;
+}
+
+
+a:hover {
+    color:greenyellow;
+}

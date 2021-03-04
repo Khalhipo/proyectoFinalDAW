@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-header">
+        <h6 class="card-title"><i class="fas fa-list-alt"></i> Crear entrenamiento</h6> 
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+        Categoría: <select [(ngModel)]="ejercicio.categoria" (change)="filtrarCategoria($event)" class="form-control">
+            <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+        </select>
+        Ejercicio: <select select [(ngModel)]="ejercicio.id_ejercicio" (change)="cambiarEjercicio($event)" class="form-control">
+            <option *ngFor="let ejercicioLista of listaEjerciciosMostrar" value="{{ejercicioLista.id}}">{{ejercicioLista.nombre}}
+            </option>
+           
+        </select><br>
+        <button class="btn btn-info" (click)="addEjercicio()">Añadir ejercicio</button>
+    </div>
+    <div class="col-md-6">
+        <label>Series: </label><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series">
+        <label>Reps: </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps">
+        <label>Peso: </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)">
+    </div>
+    {{mensaje}}
+</div>
+    </div>
+    <ul class="lista-ejercicios list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let ej of ejerciciosETTO">
+            Cat: {{ej.categoria}} Ej: {{ej.nombre}} Series: {{ej.series}} Reps: {{ej.repeticiones}} Peso: {{ej.peso}}  <button (click)="borrarEjercicio(ej)" class="btn btn-danger">Borrar ejercicio</button>
+        </li>
+    </ul>
+    <div class="card-body final">
+        <div class="row datos-ad">
+            <div class="cold-md-9">
+                <h6 class="card-title"><i class="fas fa-comment"></i> Comentario</h6>
+                <textarea [(ngModel)]="comentario" cols="40" class="form-control"></textarea>
+            </div>
+        <div class="col-md-3">
+        <h6 class="card-title"><i class="fas fa-weight"></i> Peso corporal</h6><input [(ngModel)]="pesoCorporal" select class="form-control" type="number" placeholder="Peso">
+    </div>
+</div><br>
+        <button (click)="crearEtto()" class="btn btn-info">Crear ETTO</button>
+        <button class="btn btn-danger">Borrar ETTO</button>
+    </div>
+</div>

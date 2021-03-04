@@ -1,0 +1,96 @@
+::placeholder {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+input {
+    padding:0 1em;
+    font-size: 14px;
+    
+}
+
+input:focus {
+    background-color: #fed8b1;
+}
+
+.chat {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.lista-amigos {
+    max-height: 410px;
+    overflow-y: auto;
+}
+
+.img-thumbnail {
+    background: rgb(185,34,195);
+background: linear-gradient(0deg, rgba(185,34,195,1) 0%, rgba(45,253,198,1) 100%);
+}
+
+
+.img-user {
+    border-radius: 40px;
+    width: 80px;
+    height: 80px;
+}
+
+.img-user-chat {
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.btns-friend {
+    text-align: right;
+}
+
+.data-email {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.container-friend {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-chat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header {
+    background-color: #9A239E;
+    color: white;
+}
+
+.icono {
+    color: #95EB3A;
+}
+
+.card {
+    color: black;
+    background-color: orange;
+}
+
+.list-group-item {
+    background-color:#fed8b1 ;
+    color: black;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 5px;
+    margin: 0.5em ;
+}
+
+li {
+    text-decoration: none;
+}
+
+

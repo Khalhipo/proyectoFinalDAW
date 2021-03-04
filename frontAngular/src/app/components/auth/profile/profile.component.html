@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-6">
+<div class="mx-auto m-4" style="width: 70vh;">
+<div class="card">
+    <div class="card-header h4 text-center"><h4>Mi Perfil</h4></div>
+    <div class="card-body">
+        <div class="alert alert-danger" role="alert" *ngIf="mensaje">
+            <strong>{{mensaje}}</strong>
+        </div>
+        <div class="row">
+    <div class="col-md-6">
+        <strong>Nombre:</strong>
+        <p class="list-group-item data">{{perfil.nombre}}</p>
+        <strong>Sexo:</strong>
+        <p class="list-group-item data">{{perfil.sexo}}</p>
+        <strong>Peso (kg):</strong>
+        <p class="list-group-item data">{{perfil.peso}}</p>
+    </div>
+    <div class="col-md-6">
+        <strong>Email:</strong>
+        <p class="list-group-item data">{{perfil.email}}</p>
+        <strong>Altura (cm):</strong>
+        <p class="list-group-item data">{{perfil.altura}}</p>
+        <img src='{{perfil.imgSrc}}' width='200px'>
+         </div>
+        
+        </div><br>
+        <button class="btn btn-info btn-block" (click)="mostrarEditar=!mostrarEditar;">Editar usuario</button>
+        <button class="btn btn-danger btn-block" (click)="mostrarEliminar=!mostrarEliminar;">Eliminar usuario</button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" *ngIf="mostrarEditar">
+
+        <form [formGroup]="formPerfil" (submit)="editarPerfil()">
+            <input type="text" class=" form-control" formControlName="nombre" placeholder="Nombre"><br>
+            <input type="password" class=" form-control" formControlName="password" placeholder="Password"><br>
+            <input type="text" class=" form-control" formControlName="email" placeholder="Email"><br>
+            <!--<input type="text" class="form-control" formControlName="sexo" placeholder="Sexo"><br>-->
+            <div class="form-group">
+            <select id="sexo" class="form-control pl-3" formControlName="sexo" (change)="changeSexo($event)">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+            </select>
+            </div>
+            <input type="number" class=" form-control" formControlName="peso" placeholder="Peso"><br>
+            <input type="number" class=" form-control" formControlName="altura" placeholder="Altura"><br>
+            <button class="btn btn-info btn-block" [disabled]="formPerfil.invalid" type="submit">Guardar cambios</button>
+        </form>
+
+        <button class="btn btn-secondary btn-block" (click)="mostrarEditar=!mostrarEditar">Cancelar</button>
+    </div>
+</div>
+<div class="card" *ngIf="mostrarEliminar">
+    <div class="card-header h5 text-center">Para eliminar tu perfil introduce tu email</div>
+    <div class="card-body">
+        <input class="form-control" type="text" [(ngModel)]="inputBorrar" placeholder="Email...">
+        <button class="btn btn-secondary btn-block" (click)="mostrarEliminar=!mostrarEliminar; inputBorrar=''">Cancelar</button>
+        <button class="btn btn-danger btn-block" (click)="eliminarUsuario()" [disabled]="inputBorrar!=perfil.email">Eliminar</button>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="card-header h5 text-center">Imagen</div>
+    <div class="card-body">
+        <input class="form-control" type="file" (change)='tengoFoto($event)'>
+<button class="btn btn-info btn-block" type='button' (click)='subirFoto()'>Subir imagen</button>
+    </div>
+</div>
+</div>

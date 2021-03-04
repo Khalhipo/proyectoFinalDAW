@@ -1,0 +1,11 @@
+.datepicker {
+    background-color: orange;
+}
+
+.ngb-dp-weekdays, .ngb-dp-header  {
+    background-color: #9A239E !important;
+}
+
+.ngb-dp-day:active {
+    background-color: greenyellow;
+}
