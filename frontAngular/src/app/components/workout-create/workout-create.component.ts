@@ -29,6 +29,7 @@ export class WorkoutCreateComponent implements OnInit {
   entrenamiento: Entrenamiento;
 
   mensaje: string = '';
+  ejercicioEjemplo: EjercicioLista;
 
   ngOnInit(): void {
     this.listarEjercicios();
@@ -42,7 +43,6 @@ export class WorkoutCreateComponent implements OnInit {
         this.categorias = this.listaEjercicios.map(el=>el.categoria);
         this.categorias = [...new Set(this.categorias)];
         //this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.categorias[0]);
-
       },
       error => {
         console.log(error),
@@ -52,20 +52,43 @@ export class WorkoutCreateComponent implements OnInit {
   }
 
   addEjercicio(): void {
-    
-  if(this.ejercicio.series != null && this.ejercicio.repeticiones != null){
-    this.ejerciciosETTO.push({id_ejercicio: this.ejercicio.id_ejercicio,nombre:this.ejercicio.nombre, categoria: this.ejercicio.categoria, 
-      series: this.ejercicio.series,repeticiones: this.ejercicio.repeticiones, peso: this.ejercicio.peso});
+    let ejercicioValido = true;
+  if(this.ejercicio.series == null || this.ejercicio.repeticiones == null || this.ejercicio.nombre == "") {
+    this.mensaje = "Faltan parámetros";
+    ejercicioValido = false;
+
+  } 
+  if(this.ejercicioRepetido(this.ejercicio.nombre) && this.ejerciciosETTO.length > 0) {
+    this.mensaje = "Este ejercicio ya está incluido en el ETTO";
+    ejercicioValido = false;
+  }
+  
+  if(ejercicioValido){
+  this.ejerciciosETTO.push({id_ejercicio: this.ejercicio.id_ejercicio,nombre:this.ejercicio.nombre, categoria: this.ejercicio.categoria, 
+  series: this.ejercicio.series,repeticiones: this.ejercicio.repeticiones, peso: this.ejercicio.peso});
   this.ejercicio.series = null;
   this.ejercicio.repeticiones = null;
   this.ejercicio.peso = null;
   this.ejercicio.nombre = '';
+  this.listarEjercicios();
+}
   }
+
+  ejercicioRepetido(nombre: string): boolean {
+    let salida = true;
+
+    if(this.ejerciciosETTO.filter(el=>el.nombre == nombre).length == 0){
+      salida = false;
+    }
+    return salida;
   }
 
   cambiarEjercicio(e) {
-  this.ejercicio.nombre = this.listaEjerciciosMostrar.filter(el => el.id == e.target.value)[0].nombre; 
+   this.ejercicio.nombre = this.listaEjerciciosMostrar.filter(el => el.id == e.target.value)[0].nombre; 
+  }
 
+  limpiarEjercicio(e) {
+    this.listaEjerciciosMostrar = [];
   }
 
   borrarEjercicio(ej: EjercicioMostrar): void {
@@ -73,25 +96,29 @@ export class WorkoutCreateComponent implements OnInit {
   }
 
   filtrarCategoria(e): void {
-    this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == e.target.value);
+    this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.ejercicio.categoria);
   }
 
   crearEtto(): void {
+    let ettoValido = true;
+    if(this.ejerciciosETTO.length == 0) {
+      ettoValido = false;
+      this.mensaje = 'No has añadido ningún ejercicio';
+    }
+    if(ettoValido) {
     this.entrenamiento = {
       fecha: this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day,
       comentario: this.comentario?this.comentario:null,
       pesoCorporal: this.pesoCorporal?this.pesoCorporal:null,
       ejercicios: this.ejerciciosETTO
     }
-    console.log("etto: " + JSON.stringify(this.entrenamiento));
     this.entrenamientoService.crearEtto(this.entrenamiento).subscribe(
       respuesta => {
-        console.log("hola amigos:" + respuesta);
         //this.irHacia.navigate(['/home']);
         
       }
     )
-
+  }
   }
 
 }

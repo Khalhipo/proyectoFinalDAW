@@ -24,9 +24,22 @@ class EntrenamientosController {
         exit(json_encode(["error" => "No se han enviado todos los parametros"]));
         }
         
-        $peticion = $this->db->prepare("INSERT INTO entrenamientos (id_usuario,fecha,comentario) VALUES (?,?,?)");
+        $eval = "INSERT INTO entrenamientos (id_usuario,fecha,comentario) VALUES (?,?,?)";
+        $peticion = $this->db->prepare($eval);
         $resultado = $peticion->execute([IDUSER,$etto->fecha,$etto->comentario]);
-        $ultimo_id_etto = $resultado->insert_id();
+        
+        $ultimo_id_etto = $this->db->lastInsertId();
+        
+        foreach($etto->ejercicios as $ejercicio) {
+         $eval = "INSERT INTO etto_ejercicios (id_entrenamiento,id_ejercicio,series,repeticiones,peso) VALUES (?,?,?,?,?)";
+         $peticion = $this->db->prepare($eval);
+         $resultado = $peticion->execute([$ultimo_id_etto,$ejercicio->id_ejercicio,$ejercicio->series,$ejercicio->repeticiones,
+             $ejercicio->peso]); 
+        }
+        
+        $eval = "INSERT INTO pesos (id_usuario,fecha,peso) VALUES (?,?,?)";
+        $peticion = $this->db->prepare($eval);
+        $resultado = $peticion->execute([IDUSER,$etto->fecha,$etto->pesoCorporal]);
         
         http_response_code(201);
         exit(json_encode("Entrenamiento creado correctamente"));

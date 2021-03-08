@@ -123,7 +123,7 @@ switch($control[0]) {
         }
         break;
       case "POST":
-
+          $entrenamientos->crearEtto();
         break;
       case "PUT":
 

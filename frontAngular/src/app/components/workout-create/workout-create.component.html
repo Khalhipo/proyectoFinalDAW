@@ -5,11 +5,13 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-        Categoría: <select [(ngModel)]="ejercicio.categoria" (change)="filtrarCategoria($event)" class="form-control">
-            <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+        Categoría: <select [(ngModel)]="ejercicio.categoria" (change)="limpiarEjercicio($event)" class="form-control">
+            <option value="" disabled>Elige una categoría</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria">{{categoria}}</option>
         </select>
-        Ejercicio: <select select [(ngModel)]="ejercicio.id_ejercicio" (change)="cambiarEjercicio($event)" class="form-control">
-            <option *ngFor="let ejercicioLista of listaEjerciciosMostrar" value="{{ejercicioLista.id}}">{{ejercicioLista.nombre}}
+        Ejercicio: <select [(ngModel)]="ejercicio.id_ejercicio" (focus)="filtrarCategoria($event)"  (change)="cambiarEjercicio($event)" class="form-control">
+            <option value="" disabled>Elige un ejercicio</option>
+            <option *ngFor="let ejercicioLista of listaEjerciciosMostrar" [(value)]="ejercicioLista.id">{{ejercicioLista.nombre}}
             </option>
            
         </select><br>
