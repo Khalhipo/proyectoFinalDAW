@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2021 a las 12:06:18
+-- Tiempo de generación: 08-03-2021 a las 09:52:42
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -136,6 +136,19 @@ INSERT INTO `mensajes` (`id`, `idRemitente`, `idDestinatario`, `mensaje`, `leido
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pesos`
+--
+
+CREATE TABLE `pesos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(10) UNSIGNED NOT NULL,
+  `peso` float NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -205,6 +218,13 @@ ALTER TABLE `mensajes`
   ADD KEY `id_destinatario` (`idDestinatario`);
 
 --
+-- Indices de la tabla `pesos`
+--
+ALTER TABLE `pesos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_peso` (`id_usuario`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -245,6 +265,12 @@ ALTER TABLE `mensajes`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT de la tabla `pesos`
+--
+ALTER TABLE `pesos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
@@ -280,6 +306,12 @@ ALTER TABLE `etto_ejercicios`
 ALTER TABLE `mensajes`
   ADD CONSTRAINT `id_destinatario` FOREIGN KEY (`idDestinatario`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_remitente` FOREIGN KEY (`idRemitente`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pesos`
+--
+ALTER TABLE `pesos`
+  ADD CONSTRAINT `usuario_peso` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

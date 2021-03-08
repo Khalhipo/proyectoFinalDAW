@@ -109,6 +109,32 @@ switch($control[0]) {
     }
     break;
 
+    case "entrenamientos":
+    require_once("controllers/entrenamientos.controller.php");
+    $entrenamientos = new EntrenamientosController($conexion);
+    switch(METODO) {
+      case "GET":
+        switch($control[1]) {
+          case "listEj":
+            $entrenamientos->listarEjercicios();
+            break;
+          case "":
+            
+        }
+        break;
+      case "POST":
+
+        break;
+      case "PUT":
+
+        break;
+      case "DELETE":
+ 
+        break;
+      default: exit(json_encode(["Bienvenido al Backend con routes"]));
+    }
+    break;
+
     case "mensajes":
       require_once("controllers/mensajes.controller.php");
       $mensajes = new MensajesController($conexion);
