@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2021 a las 09:52:42
+-- Tiempo de generación: 09-03-2021 a las 13:22:55
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -85,6 +85,23 @@ INSERT INTO `ejercicios` (`id`, `nombre`, `categoria`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `ejerciciosmostrar`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `ejerciciosmostrar` (
+`id` int(11)
+,`nombre` varchar(255)
+,`categoria` varchar(255)
+,`id_entrenamiento` int(11)
+,`id_ejercicio` int(11)
+,`series` int(11)
+,`repeticiones` int(11)
+,`peso` float
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `entrenamientos`
 --
 
@@ -94,6 +111,14 @@ CREATE TABLE `entrenamientos` (
   `fecha` date NOT NULL,
   `comentario` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `entrenamientos`
+--
+
+INSERT INTO `entrenamientos` (`id`, `id_usuario`, `fecha`, `comentario`) VALUES
+(7, 3, '2021-03-08', 'Este entrenamiento fue muy bien'),
+(8, 3, '2021-03-09', 'El día de pierna pica mucho');
 
 -- --------------------------------------------------------
 
@@ -109,6 +134,19 @@ CREATE TABLE `etto_ejercicios` (
   `repeticiones` int(11) NOT NULL,
   `peso` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `etto_ejercicios`
+--
+
+INSERT INTO `etto_ejercicios` (`id`, `id_entrenamiento`, `id_ejercicio`, `series`, `repeticiones`, `peso`) VALUES
+(1, 7, 1, 4, 8, 64),
+(2, 7, 3, 7, 5, 55),
+(3, 7, 5, 5, 5, 78),
+(4, 7, 7, 4, 8, 12),
+(5, 8, 3, 5, 8, 4),
+(6, 8, 2, 7, 8, 50),
+(7, 8, 6, 8, 5, 8);
 
 -- --------------------------------------------------------
 
@@ -146,6 +184,14 @@ CREATE TABLE `pesos` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pesos`
+--
+
+INSERT INTO `pesos` (`id`, `id_usuario`, `peso`, `fecha`) VALUES
+(5, 3, 75, '2021-03-08'),
+(6, 3, 78, '2021-03-09');
+
 -- --------------------------------------------------------
 
 --
@@ -175,6 +221,15 @@ INSERT INTO `users` (`id`, `nombre`, `password`, `email`, `sexo`, `altura`, `pes
 (7, 'Laura', '$2y$10$sqQfkbvWpkQXTALthsY3P.ell.TH10jYNcMblvOQvFRRwrjxDE/vm', 'laura@laura.es', 'mujer', 175, 55, 'http://localhost/backendphp/images/p-7-1614441818.jpg'),
 (8, 'Jose', '$2y$10$e3gXlBQmqXqSpKOZiqYdHebK8uBGDmY3VrUVEDALAiu6zeVzRXA5G', 'jose@jose.es', 'hombre', 185, 85, 'http://localhost/backendphp/images/p-8-1614441951.jpg'),
 (9, 'jejeje', '$2y$10$d9ywKWRvQwjsy9wTa9GV.enX1DA2A3clK5m20kd0BhPQp..HtQ9gS', 'a@a.a', 'hombre', 44, 55, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `ejerciciosmostrar`
+--
+DROP TABLE IF EXISTS `ejerciciosmostrar`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ejerciciosmostrar`  AS  select `etto_ejercicios`.`id` AS `id`,`ejercicios`.`nombre` AS `nombre`,`ejercicios`.`categoria` AS `categoria`,`etto_ejercicios`.`id_entrenamiento` AS `id_entrenamiento`,`etto_ejercicios`.`id_ejercicio` AS `id_ejercicio`,`etto_ejercicios`.`series` AS `series`,`etto_ejercicios`.`repeticiones` AS `repeticiones`,`etto_ejercicios`.`peso` AS `peso` from (`etto_ejercicios` join `ejercicios`) where `etto_ejercicios`.`id_ejercicio` = `ejercicios`.`id` ;
 
 --
 -- Índices para tablas volcadas
@@ -250,13 +305,13 @@ ALTER TABLE `ejercicios`
 -- AUTO_INCREMENT de la tabla `entrenamientos`
 --
 ALTER TABLE `entrenamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `etto_ejercicios`
 --
 ALTER TABLE `etto_ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
@@ -268,13 +323,13 @@ ALTER TABLE `mensajes`
 -- AUTO_INCREMENT de la tabla `pesos`
 --
 ALTER TABLE `pesos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

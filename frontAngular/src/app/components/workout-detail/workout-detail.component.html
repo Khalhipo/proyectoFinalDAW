@@ -8,11 +8,11 @@
     </div>
     <ul class="lista-ejercicios list-group list-group-flush">
         <li *ngFor="let ejercicio of entrenamiento.ejercicios" class="list-group-item">
-           {{ejercicio.categoria}}  {{ejercicio.nombre}}  {{ejercicio.series}}  {{ejercicio.repeticiones}}  {{ejercicio.peso}}
+            Cat: {{ejercicio.categoria}} Ej: {{ejercicio.nombre}} Series: {{ejercicio.series}} Reps: {{ejercicio.repeticiones}} Peso: {{ejercicio.peso}}
         </li>
     </ul>
     <div class="card-body">
-        <h6 class="card-title">Peso corporal:</h6>
+        <h6 class="card-title">Peso corporal (kg)</h6>
         <p>{{entrenamiento.pesoCorporal}}</p>
         <h6 class="card-title">Comentario</h6>
         <p>{{entrenamiento.comentario}}</p>

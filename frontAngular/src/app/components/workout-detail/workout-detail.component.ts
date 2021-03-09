@@ -12,7 +12,7 @@ export class WorkoutDetailComponent implements OnInit {
 
   @Input() fecha: {day:"",month:"",year:""};
 
-  entrenamiento: Entrenamiento;
+  entrenamiento: Entrenamiento = null;
 
   constructor(private entrenamientoService: EntrenamientoService) { }
 
