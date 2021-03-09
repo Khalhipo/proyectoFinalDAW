@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EjercicioEtto } from 'src/app/interfaces/ejercicio';
 import { Entrenamiento } from 'src/app/interfaces/entrenamiento';
 import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
@@ -14,7 +15,7 @@ export class WorkoutDetailComponent implements OnInit {
 
   entrenamiento: Entrenamiento = null;
 
-  constructor(private entrenamientoService: EntrenamientoService) { }
+  constructor(private entrenamientoService: EntrenamientoService, private irHacia: Router) { }
 
   ngOnInit(): void {
     this.recuperarEtto();
@@ -28,6 +29,16 @@ export class WorkoutDetailComponent implements OnInit {
         this.entrenamiento = respuesta;
       }
     )
+  }
+
+  borrarEtto(): void {
+    let fechaFormatted = this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day;
+    this.entrenamientoService.borrarEtto(fechaFormatted).subscribe(
+      respuesta => {
+        console.log(respuesta)
+      }
+    )
+    this.irHacia.navigate(['/']);
   }
 
 }

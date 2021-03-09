@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkExisteEtto(): void {
+    this.existeEtto = false;
     let fechaFormatted = this.calendario.year + "-" + this.calendario.month + "-" + this.calendario.day;
     this.entrenamientoService.recuperarEtto(fechaFormatted).subscribe(
       respuesta => {

@@ -27,4 +27,8 @@ export class EntrenamientoService {
   recuperarEtto(fecha: string): Observable<any> {
     return this.http.get(url+'etto'+'?fecha='+fecha);
   }
+
+  borrarEtto(fecha: string): Observable<any> {
+    return this.http.delete(url+'etto'+'?fecha='+fecha);
+  }
 }
