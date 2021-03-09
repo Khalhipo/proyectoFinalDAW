@@ -7,19 +7,14 @@
         </div>
     </div>
     <ul class="lista-ejercicios list-group list-group-flush">
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
-        <li class="list-group-item">Nombre series repeticiones peso</li>
+        <li *ngFor="let ejercicio of entrenamiento.ejercicios" class="list-group-item">
+           {{ejercicio.categoria}}  {{ejercicio.nombre}}  {{ejercicio.series}}  {{ejercicio.repeticiones}}  {{ejercicio.peso}}
+        </li>
     </ul>
     <div class="card-body">
         <h6 class="card-title">Peso corporal:</h6>
-        <p>80 kg</p>
+        <p>{{entrenamiento.pesoCorporal}}</p>
         <h6 class="card-title">Comentario</h6>
-        <p>Este entrenamiento fue bastante duro, tengo que cambiar el ejercicio de espalda.</p>
+        <p>{{entrenamiento.comentario}}</p>
     </div>
 </div>

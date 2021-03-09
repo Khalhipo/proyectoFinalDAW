@@ -114,8 +114,7 @@ export class WorkoutCreateComponent implements OnInit {
     }
     this.entrenamientoService.crearEtto(this.entrenamiento).subscribe(
       respuesta => {
-        //this.irHacia.navigate(['/home']);
-        
+        this.irHacia.navigate(['/home']);
       }
     )
   }

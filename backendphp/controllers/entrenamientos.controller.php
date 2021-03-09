@@ -44,5 +44,34 @@ class EntrenamientosController {
         http_response_code(201);
         exit(json_encode("Entrenamiento creado correctamente"));
     }
+    
+    public function recuperarEtto() {
+        $fecha = null;
+        $fecha = $_GET['fecha'];
+        
+        if(!isset($fecha)) {
+        http_response_code(400);
+        exit(json_encode(["error" => "No se han enviado todos los parametros"]));
+        }
+        
+        $eval = "SELECT * FROM entrenamientos WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([IDUSER,$fecha]);
+        $datosEtto = $peticion->fetchAll();
+        $etto['id'] = $datosEtto[0]['id'];
+        $etto['comentario'] = $datosEtto[0]['comentario'];
+        
+        $eval = "SELECT peso FROM pesos WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([IDUSER,$fecha]);
+        $etto['pesoCorporal'] = $peticion->fetchAll()[0]['peso'];
+        
+        $eval = "SELECT * FROM ejerciciosmostrar WHERE id_entrenamiento = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([$etto['id']]);
+        $etto['ejercicios'] = $peticion->fetchAll();
+        
+        exit(json_encode($etto));  
+    }
 
 }

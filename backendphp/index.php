@@ -118,8 +118,8 @@ switch($control[0]) {
           case "listEj":
             $entrenamientos->listarEjercicios();
             break;
-          case "":
-            
+          case "etto":
+            $entrenamientos->recuperarEtto();
         }
         break;
       case "POST":

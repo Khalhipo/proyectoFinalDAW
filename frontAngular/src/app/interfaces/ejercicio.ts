@@ -7,6 +7,8 @@ export interface EjercicioLista {
 
 export interface EjercicioEtto {
     id?: number,
+    nombre?: string,
+    categoria?: string,
     id_entrenamiento?: number,
     id_ejercicio: number,
     series: number,
