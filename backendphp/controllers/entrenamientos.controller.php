@@ -78,7 +78,41 @@ class EntrenamientosController {
         } else {
             exit(json_encode(["respuesta" => "error"]));
         }
-        
+    }
+
+    public function borrarEtto() {
+        $fecha = null;
+        $fecha = $_GET['fecha'];
+        $id_entrenamiento = null;
+
+        if (!isset($fecha)) {
+            http_response_code(400);
+            exit(json_encode(["error" => "No se han enviado todos los parametros"]));
+        }
+
+        $eval = "SELECT id FROM entrenamientos WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([IDUSER, $fecha]);
+        $etto = $peticion->fetch(PDO::FETCH_ASSOC);
+        $id_entrenamiento = $etto['id'];
+
+        $eval = "DELETE FROM entrenamientos WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([IDUSER, $fecha]);
+        http_response_code(200);
+        if ($peticion->rowCount()) {
+
+            $eval = "DELETE FROM pesos WHERE id_usuario = ? AND fecha = ?";
+            $peticion = $this->db->prepare($eval);
+            $peticion->execute([IDUSER, $fecha]);
+
+            $eval = "DELETE FROM etto_ejercicios WHERE id_entrenamiento = ?";
+            $peticion = $this->db->prepare($eval);
+            $peticion->execute([$id_entrenamiento]);
+
+            exit(json_encode("Entrenamiento eliminado correctamente"));
+        } else
+            exit(json_encode("No se ha eliminado el entrenamiento"));
     }
 
 }

@@ -129,7 +129,7 @@ switch($control[0]) {
 
         break;
       case "DELETE":
- 
+          $entrenamientos->borrarEtto();
         break;
       default: exit(json_encode(["Bienvenido al Backend con routes"]));
     }
