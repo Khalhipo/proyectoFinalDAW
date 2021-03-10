@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { EjercicioEtto } from 'src/app/interfaces/ejercicio';
 import { Entrenamiento } from 'src/app/interfaces/entrenamiento';
@@ -12,6 +12,7 @@ import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
 export class WorkoutDetailComponent implements OnInit {
 
   @Input() fecha: {day:"",month:"",year:""};
+  @Output() changeComponent = new EventEmitter<boolean>();
 
   entrenamiento: Entrenamiento = null;
 
@@ -20,6 +21,10 @@ export class WorkoutDetailComponent implements OnInit {
   ngOnInit(): void {
     this.recuperarEtto();
   }
+
+  cambiarComponente() {
+    this.changeComponent.emit(false);
+}
 
   recuperarEtto(): void {
     let fechaFormatted = this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day;
@@ -38,7 +43,7 @@ export class WorkoutDetailComponent implements OnInit {
         console.log(respuesta)
       }
     )
-    this.irHacia.navigate(['/']);
+    this.cambiarComponente();
   }
 
 }

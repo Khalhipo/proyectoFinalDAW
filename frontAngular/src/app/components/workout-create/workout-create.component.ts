@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EjercicioEtto, EjercicioMostrar, EjercicioLista } from 'src/app/interfaces/ejercicio';
 import { Entrenamiento } from 'src/app/interfaces/entrenamiento';
 import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-workout-create',
@@ -12,6 +13,7 @@ import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
 export class WorkoutCreateComponent implements OnInit {
 
   @Input() fecha: {day:"",month:"",year:""};
+  @Output() changeComponent = new EventEmitter<boolean>();
 
   constructor(private entrenamientoService: EntrenamientoService, private irHacia: Router) { }
 
@@ -33,6 +35,10 @@ export class WorkoutCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarEjercicios();
+  }
+
+  cambiarComponente() {
+      this.changeComponent.emit(true);
   }
 
   listarEjercicios(): void {
@@ -70,7 +76,6 @@ export class WorkoutCreateComponent implements OnInit {
   this.ejercicio.repeticiones = null;
   this.ejercicio.peso = null;
   this.ejercicio.nombre = '';
-  this.listarEjercicios();
 }
   }
 
@@ -117,8 +122,8 @@ export class WorkoutCreateComponent implements OnInit {
         console.log(respuesta);
       }
     )
+    this.cambiarComponente();
   }
-    this.irHacia.navigate(['/']);
   }
 
 }

@@ -22,8 +22,12 @@ export class HomeComponent implements OnInit {
     this.checkExisteEtto();
   }
 
+  changeComponent(value) {
+    setTimeout(()=>this.existeEtto = value,200);
+  }
+
   checkExisteEtto(): void {
-    this.existeEtto = false;
+    this.existeEtto = null;
     let fechaFormatted = this.calendario.year + "-" + this.calendario.month + "-" + this.calendario.day;
     this.entrenamientoService.recuperarEtto(fechaFormatted).subscribe(
       respuesta => {
