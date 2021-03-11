@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EjercicioMostrar } from '../interfaces/ejercicio';
+import { EjercicioLista, EjercicioMostrar } from '../interfaces/ejercicio';
 import { Entrenamiento } from '../interfaces/entrenamiento';
 
 const url = 'http://localhost/backendphp/entrenamientos/';
@@ -18,6 +18,10 @@ export class EntrenamientoService {
 
   listarEjercicios(): Observable<any> {
     return this.http.get(url+'listEj');
+  }
+
+  crearEjercicio(ejercicioNuevo: EjercicioLista): Observable<any> {
+    return this.http.post(url+'ejer',ejercicioNuevo);
   }
 
   crearEtto(etto: Entrenamiento): Observable<any> {

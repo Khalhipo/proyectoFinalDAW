@@ -30,8 +30,10 @@ export class WorkoutCreateComponent implements OnInit {
 
   entrenamiento: Entrenamiento;
 
+  nuevoEjercicio: EjercicioLista = {nombre:"",categoria:""};
+
   mensaje: string = '';
-  ejercicioEjemplo: EjercicioLista;
+  mensajeModal: string = '';
 
   ngOnInit(): void {
     this.listarEjercicios();
@@ -124,6 +126,23 @@ export class WorkoutCreateComponent implements OnInit {
     )
     this.cambiarComponente();
   }
+  }
+
+  crearEjercicio() {
+    console.log("nombre:" + this.nuevoEjercicio.nombre + " categoria: " + this.nuevoEjercicio.categoria)
+    this.entrenamientoService.crearEjercicio(this.nuevoEjercicio).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.mensajeModal = 'Ejercicio creado correctamente';
+        setTimeout(()=>this.mensajeModal = '',1000);
+        this.nuevoEjercicio = {nombre:"",categoria:""};
+        this.listarEjercicios();
+      },
+      error => {
+        console.log(error),
+        this.mensajeModal = error.error.error
+      }
+    )
   }
 
 }

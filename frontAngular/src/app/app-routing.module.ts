@@ -8,6 +8,7 @@ import { UserRouterGuard } from './auth/user-router.guard';
 import { SocialComponent } from './components/social/social.component';
 import { HomeComponent } from './components/home/home.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { SobremiComponent } from './components/sobremi/sobremi.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent, canActivate:[UserRouterGuard]},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:"social",component:SocialComponent, canActivate:[UserRouterGuard]},
   {path:"stats",component:StatsComponent, canActivate:[UserRouterGuard]},
   {path:"profile",component:ProfileComponent, canActivate:[UserRouterGuard]},
+  {path:"sobremi",component:SobremiComponent},
   {path:"**",component:HomeComponent, canActivate:[UserRouterGuard]},
   {path:"",component:HomeComponent, canActivate:[UserRouterGuard]}
 ];

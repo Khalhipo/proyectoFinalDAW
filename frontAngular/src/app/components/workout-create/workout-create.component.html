@@ -16,6 +16,43 @@
            
         </select><br>
         <button class="btn btn-info" (click)="addEjercicio()">Añadir ejercicio</button>
+        
+        <!--MODAL CREAR EJERCICIO-->
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearEjercicio">
+            Crear ejercicio
+          </button>
+          
+          <!-- Modal -->
+              <div class="modal fade" id="crearEjercicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Crear nuevo ejercicio</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Nombre: </p><input class="form-control" type="texto" [(ngModel)]="nuevoEjercicio.nombre">
+                  <p>Categoría: </p>
+                  <select class="form-control" [(ngModel)]="nuevoEjercicio.categoria">
+                    <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+                  </select>
+                  <div *ngIf="mensajeModal!=''" class="alert alert-primary" role="alert">
+                    {{mensajeModal}}
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" (click)="crearEjercicio()" class="btn btn-info">Crear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!--FIN MODAL CREAR EJERCICIO-->
     </div>
     <div class="col-md-6">
         <label>Series: </label><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series">

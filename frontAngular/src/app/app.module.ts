@@ -19,6 +19,7 @@ import { WorkoutDetailComponent } from './components/workout-detail/workout-deta
 import { WorkoutCreateComponent } from './components/workout-create/workout-create.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { WorkoutUpdateComponent } from './components/workout-update/workout-update.component';
+import { SobremiComponent } from './components/sobremi/sobremi.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { WorkoutUpdateComponent } from './components/workout-update/workout-upda
     WorkoutDetailComponent,
     WorkoutCreateComponent,
     StatsComponent,
-    WorkoutUpdateComponent
+    WorkoutUpdateComponent,
+    SobremiComponent
   ],
   imports: [
     BrowserModule,

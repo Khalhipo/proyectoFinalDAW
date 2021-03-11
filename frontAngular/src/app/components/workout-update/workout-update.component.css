@@ -1,68 +1,67 @@
 .lista-ejercicios {
     height: 200px;
     overflow-y: auto;
-}
-
-.lista-ejercicios {
+  }
+  
+  .lista-ejercicios {
     max-height: 400px;
     overflow-y: auto;
-}
-
-.card-header {
+  }
+  
+  .card-header {
     display: flex;
     justify-content: space-between;
-}
-
-::placeholder {
+  }
+  
+  ::placeholder {
     color: white;
-}
-
-input {
-    padding:0 1em;
+  }
+  
+  input {
+    padding: 0 1em;
     font-size: 14px;
-    
-}
-
-.card-header {
-    background-color: #9A239E;
+  }
+  
+  .card-header,
+  .modal-header {
+    background-color: #9a239e;
     color: white;
-}
-
-.icono {
-    color: #95EB3A;
-}
-
-.card {
+  }
+  
+  .icono {
+    color: #95eb3a;
+  }
+  
+  .card,
+  .modal-body,
+  .modal-footer {
     color: black;
     background-color: orange;
-}
-
-.list-group-item {
-    background-color:#fed8b1 ;
+  }
+  
+  .list-group-item {
+    background-color: #fed8b1;
     color: black;
     box-shadow: 2px 2px 3px black;
     border-radius: 5px;
-    margin: 0.5em ;
-}
-
-li {
+    margin: 0.5em;
+  }
+  
+  li {
     text-decoration: none;
     display: flex;
     justify-content: space-between;
-}
-
-.datos-ad {
+  }
+  
+  .datos-ad {
     display: flex;
     justify-content: space-between;
-
-}
-
-/*
-.final {
-    color: white;
-    background-color:  #9A239E;
-}
-*/
-
-
-
+  }
+  
+  /*
+  .final {
+      color: white;
+      background-color:  #9A239E;
+  }
+  */
+  

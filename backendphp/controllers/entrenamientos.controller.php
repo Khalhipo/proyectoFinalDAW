@@ -145,5 +145,30 @@ class EntrenamientosController {
         http_response_code(201);
         exit(json_encode("Entrenamiento actualizado correctamente"));
     }
+    
+    public function crearEjercicio() {
+        $ejercicio = json_decode(file_get_contents("php://input"));
+        
+        $eval = "SELECT * FROM ejercicios WHERE nombre = ?";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([$ejercicio->nombre]);
+        
+        
+        if($peticion->rowCount()==1){
+        http_response_code(400);
+        exit(json_encode(["error" => "Este ejercicio ya existe"])); 
+        }
+ 
+        if(!isset($ejercicio->nombre) || $ejercicio->nombre == "" || !isset($ejercicio->categoria)) {
+        http_response_code(400);
+        exit(json_encode(["error" => "No se han enviado todos los parámetros"]));
+      }
+      
+      $eval = 'INSERT INTO ejercicios (nombre,categoria) VALUES (?,?)';
+      $peticion = $this->db->prepare($eval);
+      $peticion->execute([$ejercicio->nombre,$ejercicio->categoria]);
+      http_response_code(201);
+      exit(json_encode("Ejercicio creado correctamente"));
+    }
 
 }
