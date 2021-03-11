@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { EjercicioEtto, EjercicioMostrar, EjercicioLista } from 'src/app/interfaces/ejercicio';
+import { EjercicioLista, EjercicioMostrar } from 'src/app/interfaces/ejercicio';
 import { Entrenamiento } from 'src/app/interfaces/entrenamiento';
 import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
-import { Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-workout-create',
-  templateUrl: './workout-create.component.html',
-  styleUrls: ['./workout-create.component.css']
+  selector: 'app-workout-update',
+  templateUrl: './workout-update.component.html',
+  styleUrls: ['./workout-update.component.css']
 })
-export class WorkoutCreateComponent implements OnInit {
+export class WorkoutUpdateComponent implements OnInit {
+
 
   @Input() fecha: {day:"",month:"",year:""};
   @Output() changeComponent = new EventEmitter<string>();
@@ -27,6 +27,7 @@ export class WorkoutCreateComponent implements OnInit {
 
   comentario: string;
   pesoCorporal: number;
+  id_entrenamiento: number;
 
   entrenamiento: Entrenamiento;
 
@@ -35,6 +36,7 @@ export class WorkoutCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarEjercicios();
+    this.recuperarEtto();
   }
 
   cambiarComponente() {
@@ -104,7 +106,7 @@ export class WorkoutCreateComponent implements OnInit {
     this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.ejercicio.categoria);
   }
 
-  crearEtto(): void {
+  editarEtto(): void {
     let ettoValido = true;
     if(this.ejerciciosETTO.length == 0) {
       ettoValido = false;
@@ -112,12 +114,13 @@ export class WorkoutCreateComponent implements OnInit {
     }
     if(ettoValido) {
     this.entrenamiento = {
+      id: this.id_entrenamiento,
       fecha: this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day,
       comentario: this.comentario?this.comentario:null,
       pesoCorporal: this.pesoCorporal?this.pesoCorporal:null,
       ejercicios: this.ejerciciosETTO
     }
-    this.entrenamientoService.crearEtto(this.entrenamiento).subscribe(
+    this.entrenamientoService.editarEtto(this.entrenamiento).subscribe(
       respuesta => {
         console.log(respuesta);
       }
@@ -126,4 +129,18 @@ export class WorkoutCreateComponent implements OnInit {
   }
   }
 
+  recuperarEtto(): void {
+    let fechaFormatted = this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day;
+    this.entrenamientoService.recuperarEtto(fechaFormatted).subscribe(
+      respuesta => {
+        console.log(respuesta),
+        this.comentario = respuesta.comentario;
+        this.pesoCorporal = respuesta.pesoCorporal;
+        this.ejerciciosETTO = respuesta.ejercicios;
+        this.id_entrenamiento = respuesta.id;
+      }
+    )
+  }
+
 }
+

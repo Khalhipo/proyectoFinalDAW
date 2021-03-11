@@ -126,7 +126,7 @@ switch($control[0]) {
           $entrenamientos->crearEtto();
         break;
       case "PUT":
-
+          $entrenamientos->editarEtto();
         break;
       case "DELETE":
           $entrenamientos->borrarEtto();

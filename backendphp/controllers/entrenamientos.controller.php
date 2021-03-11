@@ -114,5 +114,36 @@ class EntrenamientosController {
         } else
             exit(json_encode("No se ha eliminado el entrenamiento"));
     }
+    
+    public function editarEtto() {
+        $etto = json_decode(file_get_contents("php://input"));
+
+        if (!isset($etto->fecha)) {
+            http_response_code(400);
+            exit(json_encode(["error" => "No se han enviado todos los parametros"]));
+        }
+
+        $eval = "UPDATE entrenamientos SET comentario = ? WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $resultado = $peticion->execute([$etto->comentario,IDUSER, $etto->fecha]);
+        
+        $eval = "DELETE FROM etto_ejercicios WHERE id_entrenamiento = ?";
+        $peticion = $this->db->prepare($eval);
+        $resultado = $peticion->execute([$etto->id]);
+
+        foreach ($etto->ejercicios as $ejercicio) {
+            $eval = "INSERT INTO etto_ejercicios (id_entrenamiento,id_ejercicio,series,repeticiones,peso) VALUES (?,?,?,?,?)";
+            $peticion = $this->db->prepare($eval);
+            $resultado = $peticion->execute([$etto->id, $ejercicio->id_ejercicio, $ejercicio->series, $ejercicio->repeticiones,
+                $ejercicio->peso]);
+        }
+
+        $eval = "UPDATE pesos SET peso = ? WHERE id_usuario = ? AND fecha = ?";
+        $peticion = $this->db->prepare($eval);
+        $resultado = $peticion->execute([$etto->pesoCorporal,IDUSER, $etto->fecha]);
+
+        http_response_code(201);
+        exit(json_encode("Entrenamiento actualizado correctamente"));
+    }
 
 }

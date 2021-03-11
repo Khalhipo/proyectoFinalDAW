@@ -24,6 +24,10 @@ export class EntrenamientoService {
     return this.http.post(url,etto);
   }
 
+  editarEtto(etto: Entrenamiento): Observable<any> {
+    return this.http.put(url,etto);
+  }
+
   recuperarEtto(fecha: string): Observable<any> {
     return this.http.get(url+'etto'+'?fecha='+fecha);
   }

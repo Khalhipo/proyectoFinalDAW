@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WorkoutDetailComponent } from './components/workout-detail/workout-detail.component';
 import { WorkoutCreateComponent } from './components/workout-create/workout-create.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { WorkoutUpdateComponent } from './components/workout-update/workout-update.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StatsComponent } from './components/stats/stats.component';
     HomeComponent,
     WorkoutDetailComponent,
     WorkoutCreateComponent,
-    StatsComponent
+    StatsComponent,
+    WorkoutUpdateComponent
   ],
   imports: [
     BrowserModule,

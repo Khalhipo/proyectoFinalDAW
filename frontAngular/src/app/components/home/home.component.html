@@ -1,11 +1,10 @@
 <div class="row mt-5">
     <div class="col-md-3">
-<ngb-datepicker class="datepicker" #dp [(ngModel)]="calendario" (click)="checkExisteEtto()" (navigate)="date = $event.next"></ngb-datepicker>
+<ngb-datepicker class="datepicker" #dp [(ngModel)]="calendario" (click)="checkTipoVistaEtto()" (navigate)="date = $event.next"></ngb-datepicker>
     </div>
     <div class="col-md-9">
-        <app-workout-detail (changeComponent)="changeComponent($event)" [fecha]="calendario" *ngIf="existeEtto; else createWorkout"></app-workout-detail>
-        <ng-template #createWorkout> 
-            <app-workout-create (changeComponent)="changeComponent($event)" [fecha]="calendario"></app-workout-create>
-        </ng-template>
+        <app-workout-detail (changeComponent)="changeComponent($event)" [fecha]="calendario" *ngIf="tipoVistaEtto=='detail'"></app-workout-detail>
+        <app-workout-create (changeComponent)="changeComponent($event)" [fecha]="calendario" *ngIf="tipoVistaEtto=='create'"></app-workout-create>
+        <app-workout-update (changeComponent)="changeComponent($event)" [fecha]="calendario" *ngIf="tipoVistaEtto=='update'"></app-workout-update>
     </div>
 </div>

@@ -12,9 +12,9 @@ import { EntrenamientoService } from 'src/app/services/entrenamiento.service';
 export class WorkoutDetailComponent implements OnInit {
 
   @Input() fecha: {day:"",month:"",year:""};
-  @Output() changeComponent = new EventEmitter<boolean>();
+  @Output() changeComponent = new EventEmitter<string>();
 
-  entrenamiento: Entrenamiento = null;
+  entrenamiento: Entrenamiento = {id: null, fecha:"", comentario: "", pesoCorporal: null, ejercicios: []};
 
   constructor(private entrenamientoService: EntrenamientoService, private irHacia: Router) { }
 
@@ -23,8 +23,12 @@ export class WorkoutDetailComponent implements OnInit {
   }
 
   cambiarComponente() {
-    this.changeComponent.emit(false);
-}
+    this.changeComponent.emit("create");
+  }
+
+  editarEtto() {
+    this.changeComponent.emit("update");
+  }
 
   recuperarEtto(): void {
     let fechaFormatted = this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day;

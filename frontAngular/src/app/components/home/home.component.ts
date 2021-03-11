@@ -15,26 +15,26 @@ export class HomeComponent implements OnInit {
 
   constructor(private calendar: NgbCalendar, private entrenamientoService: EntrenamientoService) { }
 
-  existeEtto: boolean;
+  tipoVistaEtto: string;
 
   ngOnInit(): void {
     this.calendario = this.calendar.getToday();
-    this.checkExisteEtto();
+    this.checkTipoVistaEtto();
   }
 
   changeComponent(value) {
-    setTimeout(()=>this.existeEtto = value,200);
+    setTimeout(()=>this.tipoVistaEtto = value,200);
   }
 
-  checkExisteEtto(): void {
-    this.existeEtto = null;
+  checkTipoVistaEtto(): void {
+    this.tipoVistaEtto = null;
     let fechaFormatted = this.calendario.year + "-" + this.calendario.month + "-" + this.calendario.day;
     this.entrenamientoService.recuperarEtto(fechaFormatted).subscribe(
       respuesta => {
         if(respuesta.respuesta == undefined){
-          this.existeEtto = true;
+          this.tipoVistaEtto = "detail";
         } else {
-          this.existeEtto = false;
+          this.tipoVistaEtto = "create";
         }
       }
     )
