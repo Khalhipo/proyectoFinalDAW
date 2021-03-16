@@ -19,7 +19,10 @@ import { WorkoutDetailComponent } from './components/workout-detail/workout-deta
 import { WorkoutCreateComponent } from './components/workout-create/workout-create.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { WorkoutUpdateComponent } from './components/workout-update/workout-update.component';
-import { SobremiComponent } from './components/sobremi/sobremi.component';
+import { AboutmeComponent } from './components/aboutme/aboutme.component';
+import { ChartjsPesoComponent } from './components/chartjs-peso/chartjs-peso.component';
+import { ChartjsVolumenComponent } from './components/chartjs-volumen/chartjs-volumen.component';
+import { ChartjsIntensidadComponent } from './components/chartjs-intensidad/chartjs-intensidad.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { SobremiComponent } from './components/sobremi/sobremi.component';
     WorkoutCreateComponent,
     StatsComponent,
     WorkoutUpdateComponent,
-    SobremiComponent
+    AboutmeComponent,
+    ChartjsPesoComponent,
+    ChartjsVolumenComponent,
+    ChartjsIntensidadComponent
   ],
   imports: [
     BrowserModule,

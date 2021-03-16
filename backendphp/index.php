@@ -57,6 +57,7 @@ switch($control[0]) {
             break;
         }
         break;
+    
       case "POST":
         switch($control[1]) {
           case "login":
@@ -136,6 +137,41 @@ switch($control[0]) {
         break;
       case "DELETE":
           $entrenamientos->borrarEtto();
+        break;
+      default: exit(json_encode(["Bienvenido al Backend con routes"]));
+    }
+    break;
+
+    case "stats":
+    require_once("controllers/stats.controller.php");
+    $stats = new StatsController($conexion);
+    switch(METODO) {
+      case "GET":
+        switch($control[1]) {
+          case "pesoCorporal":
+              $stats->obtenerPesoCorporal();
+            break;
+          case "volumen":
+              $stats->obtenerVolumen();
+            break;
+          case "intensidad":
+              $stats->obtenerIntensidad();
+        }
+        break;
+      case "POST":
+          switch($control[1]) {
+          case "ejer":
+
+            break;
+          case "":
+
+        }
+        break;
+      case "PUT":
+
+        break;
+      case "DELETE":
+
         break;
       default: exit(json_encode(["Bienvenido al Backend con routes"]));
     }

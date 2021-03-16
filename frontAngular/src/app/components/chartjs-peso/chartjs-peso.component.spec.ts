@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SobremiComponent } from './sobremi.component';
+import { ChartjsPesoComponent } from './chartjs-peso.component';
 
-describe('SobremiComponent', () => {
-  let component: SobremiComponent;
-  let fixture: ComponentFixture<SobremiComponent>;
+describe('ChartjsPesoComponent', () => {
+  let component: ChartjsPesoComponent;
+  let fixture: ComponentFixture<ChartjsPesoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SobremiComponent ]
+      declarations: [ ChartjsPesoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SobremiComponent);
+    fixture = TestBed.createComponent(ChartjsPesoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

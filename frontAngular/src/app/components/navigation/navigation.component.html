@@ -19,14 +19,14 @@
                 <a class="nav-link" routerLink="/social"><i class="fas fa-user-friends"></i> Social</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/sobremi"><i class="fas fa-address-card"></i> Sobre mí</a>
+                <a class="nav-link" routerLink="/aboutme"><i class="fas fa-address-card"></i> About me</a>
             </li>
         </ul>
         
         <ul class="navbar-nav mt-2 mt-lg-0">
             <ng-template [ngIf]="!fnLogged()" [ngIfElse]="salir">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/register"><i class="fas fa-user-plus"></i> Registro</a>
+                    <a class="nav-link" routerLink="/register"><i class="fas fa-user-plus"></i> Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -34,7 +34,7 @@
             </ng-template>
             <ng-template #salir>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/profile"><i class="fas fa-id-badge"></i> Perfil</a>
+                    <a class="nav-link" routerLink="/profile"><i class="fas fa-id-badge"></i> Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="doLogout()" routerLink='.'><i class="fas fa-sign-out-alt"></i>

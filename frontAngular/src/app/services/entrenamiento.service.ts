@@ -11,9 +11,6 @@ const url = 'http://localhost/backendphp/entrenamientos/';
 })
 export class EntrenamientoService {
 
-  entrenamiento: Entrenamiento;
-  ejerciciosETTO: EjercicioMostrar
-
   constructor(private http: HttpClient) { }
 
   listarEjercicios(): Observable<any> {
