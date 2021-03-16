@@ -156,6 +156,9 @@ switch($control[0]) {
             break;
           case "intensidad":
               $stats->obtenerIntensidad();
+            break;
+          case "ettocategoria":
+              $stats->obtenerEttoCategoria();
         }
         break;
       case "POST":

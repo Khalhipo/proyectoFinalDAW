@@ -43,6 +43,14 @@ class StatsController {
         exit(json_encode($resultado));
     }
     
+        public function obtenerEttoCategoria() {
+        $eval = "SELECT categoria AS label, count(*) AS data FROM `ejerciciosstats` WHERE id_usuario = ? GROUP BY categoria";
+        $peticion = $this->db->prepare($eval);
+        $peticion->execute([IDUSER]);
+        $resultado = $peticion->fetchAll(PDO::FETCH_OBJ);
+        exit(json_encode($resultado));
+    }
+    
     
 
 }

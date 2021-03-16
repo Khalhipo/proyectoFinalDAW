@@ -22,4 +22,8 @@ export class StatsService {
   obtenerStatsIntensidad(): Observable<any> {
     return this.http.get(url+'intensidad');
   }
+
+  obtenerEttoCategoria(): Observable<any> {
+    return this.http.get(url+'ettocategoria');
+  }
 }

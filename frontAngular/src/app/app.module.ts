@@ -23,6 +23,7 @@ import { AboutmeComponent } from './components/aboutme/aboutme.component';
 import { ChartjsPesoComponent } from './components/chartjs-peso/chartjs-peso.component';
 import { ChartjsVolumenComponent } from './components/chartjs-volumen/chartjs-volumen.component';
 import { ChartjsIntensidadComponent } from './components/chartjs-intensidad/chartjs-intensidad.component';
+import { ChartjsEttocategoriaComponent } from './components/chartjs-ettocategoria/chartjs-ettocategoria.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChartjsIntensidadComponent } from './components/chartjs-intensidad/char
     AboutmeComponent,
     ChartjsPesoComponent,
     ChartjsVolumenComponent,
-    ChartjsIntensidadComponent
+    ChartjsIntensidadComponent,
+    ChartjsEttocategoriaComponent
   ],
   imports: [
     BrowserModule,
