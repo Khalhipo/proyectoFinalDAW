@@ -15,12 +15,12 @@ export class StatsService {
     return this.http.get(url+'pesoCorporal');
   }
 
-  obtenerStatsVolumen(): Observable<any> {
-    return this.http.get(url+'volumen');
+  obtenerStatsVolumen(categoria?: string, fecha?: string): Observable<any> {
+    return this.http.get(url+'volumen'+'?categoria='+categoria+'&fecha='+fecha);
   }
 
-  obtenerStatsIntensidad(): Observable<any> {
-    return this.http.get(url+'intensidad');
+  obtenerStatsIntensidad(categoria?: string, fecha?: string): Observable<any> {
+    return this.http.get(url+'intensidad'+'?categoria='+categoria+'&fecha='+fecha);
   }
 
   obtenerEttoCategoria(): Observable<any> {

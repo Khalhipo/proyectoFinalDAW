@@ -10,8 +10,12 @@ import { StatsService } from 'src/app/services/stats.service';
 export class ChartjsVolumenComponent implements OnInit {
 
   grafica: Chart;
+  categorias: string[] = [];
+  meses: string[] = [];
+  categoriaFiltro: string = '';
+  mesFiltro: string = '';
 
-	constructor(private statsService: StatsService) { }
+  constructor(private statsService: StatsService) { }
   
   ngOnInit(): void {
 	this.grafica = new Chart('volumen',{
@@ -67,12 +71,20 @@ export class ChartjsVolumenComponent implements OnInit {
 			  console.log(respuesta),
 			  this.grafica.data.labels = respuesta.map(el => el.label);
 			  this.grafica.data.datasets[0].data = respuesta.map(el => el.data);
+			  this.categorias = respuesta.map(el=>el.categoria);
+			  this.categorias = [...new Set(this.categorias)];
+			  this.meses = respuesta.map(el => el.label.split("-")[1]+"-"+el.label.split("-")[0]);
+			  this.meses = [...new Set(this.meses)];
 			  this.grafica.update();
 		  },
 		  error => {
 			  console.log(error)
 		  }
 	  )
+   }
+
+   filtrar(): void {
+
    }
 
 }

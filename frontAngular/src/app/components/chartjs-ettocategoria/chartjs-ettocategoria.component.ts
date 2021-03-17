@@ -25,6 +25,8 @@ export class ChartjsEttocategoriaComponent implements OnInit {
               'green',
               'red',
               'yellow',
+			  'blue',
+			  'purple'
             ],
             label: 'Data'
 				  }],
@@ -34,7 +36,7 @@ export class ChartjsEttocategoriaComponent implements OnInit {
 				  responsive: true,
 				  title: {
 					  display: true,
-					  text: 'Total ejercicios por categoría'
+					  text: 'Nº ejercicios por categoría'
 				  }
 			  }
 	})
@@ -47,6 +49,7 @@ export class ChartjsEttocategoriaComponent implements OnInit {
 			  console.log(respuesta),
 			  this.grafica.data.labels = respuesta.map(el => el.label);
 			  this.grafica.data.datasets[0].data = respuesta.map(el => el.data);
+			  this.grafica.update();
         /*
         respuesta.array.forEach(element => {
           //this.grafica.data.datasets[0].backgroundColor.push()

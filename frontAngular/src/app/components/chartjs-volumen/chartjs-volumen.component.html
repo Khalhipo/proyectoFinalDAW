@@ -1,3 +1,20 @@
 <div width="100%">
     <canvas id="volumen"></canvas>
 </div>
+<div class="row">
+    <div class="col-md-4">
+    Categorías: <select [(ngModel)]="categoriaFiltro" class="form-control">
+        <option value="todas">TODAS</option>
+        <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+    </select>
+    </div>
+    <div class="col-md-4">
+    Meses: <select  [(ngModel)]="mesFiltro" class="form-control">
+        <option value="todas">TODOS</option>
+        <option *ngFor="let mes of meses" value="{{mes}}">{{mes}}</option>
+    </select>
+    </div>
+    <div class="col-md-4">
+       <br><button (click)="filtrar()" class="btn btn-info btn-block">Filtrar</button>
+    </div>
+    </div>

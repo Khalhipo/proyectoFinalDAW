@@ -28,7 +28,7 @@ class StatsController {
     }
     
         public function obtenerVolumen() {
-        $eval = "SELECT fecha AS label, SUM(series*repeticiones) AS data FROM ejerciciosstats WHERE id_usuario = ? GROUP BY fecha";
+        $eval = "SELECT fecha AS label, categoria, SUM(series*repeticiones) AS data FROM ejerciciosstats WHERE id_usuario = ? GROUP BY fecha, categoria";
         $peticion = $this->db->prepare($eval);
         $peticion->execute([IDUSER]);
         $resultado = $peticion->fetchAll(PDO::FETCH_OBJ);
@@ -36,7 +36,7 @@ class StatsController {
     }
     
         public function obtenerIntensidad() {
-        $eval = "SELECT fecha AS label, SUM(series*repeticiones*peso) AS data FROM ejerciciosstats WHERE id_usuario = ? GROUP BY fecha";
+        $eval = "SELECT fecha AS label, categoria, SUM(series*repeticiones*peso) AS data FROM ejerciciosstats WHERE id_usuario = ? GROUP BY fecha, categoria";
         $peticion = $this->db->prepare($eval);
         $peticion->execute([IDUSER]);
         $resultado = $peticion->fetchAll(PDO::FETCH_OBJ);
