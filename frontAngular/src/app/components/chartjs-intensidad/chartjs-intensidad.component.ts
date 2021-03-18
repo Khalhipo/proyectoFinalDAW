@@ -9,11 +9,15 @@ import { StatsService } from 'src/app/services/stats.service';
 })
 export class ChartjsIntensidadComponent implements OnInit {
 
-  grafica: Chart;
-  categorias: string[] = [];
-  meses: string[] = [];
-  categoriaFiltro: string = '';
-  mesFiltro: string = '';
+	grafica: Chart;
+	categorias: string[] = [];
+	meses: string[] = [];
+  
+	mesesFiltrado: string[] = [];
+  
+	categoriaFiltro: string = '';
+	mesFiltro: string = '';
+	data: any;
 
   constructor(private statsService: StatsService) { }
   
@@ -24,8 +28,8 @@ export class ChartjsIntensidadComponent implements OnInit {
 				  labels: [],
 				  datasets: [{
 					  label: 'Intensidad de trabajo',
-					  backgroundColor: 'red',
-					  borderColor: 'red',
+					  backgroundColor: 'blue',
+					  borderColor: 'blue',
 					  data: [],
 					  fill: false,
 				  }]
@@ -62,19 +66,22 @@ export class ChartjsIntensidadComponent implements OnInit {
 				  }
 			  }
 	})
-	this.getStatsIntensidad();
+	this.iniciarChart();
   }
 
-  getStatsIntensidad(): void{
-	this.statsService.obtenerStatsIntensidad().subscribe(
+  iniciarChart(): void{
+	this.statsService.obtenerStatsIntensidad(this.categoriaFiltro,this.mesFiltro).subscribe(
 		  respuesta => {
 			  console.log(respuesta),
+			  this.data = respuesta;
 			  this.grafica.data.labels = respuesta.map(el => el.label);
 			  this.grafica.data.datasets[0].data = respuesta.map(el => el.data);
 			  this.categorias = respuesta.map(el=>el.categoria);
 			  this.categorias = [...new Set(this.categorias)];
+
 			  this.meses = respuesta.map(el => el.label.split("-")[1]+"-"+el.label.split("-")[0]);
 			  this.meses = [...new Set(this.meses)];
+			  this.mesesFiltrado = this.meses;
 			  this.grafica.update();
 		  },
 		  error => {
@@ -83,8 +90,32 @@ export class ChartjsIntensidadComponent implements OnInit {
 	  )
    }
 
-   filtrar(): void {
+  getStatsIntensidad(): void{
+	this.statsService.obtenerStatsIntensidad(this.categoriaFiltro,this.mesFiltro).subscribe(
+		respuesta => {
+			console.log(respuesta),
+			this.grafica.data.labels = respuesta.map(el => el.label);
+			this.grafica.data.datasets[0].data = respuesta.map(el => el.data);
+			this.grafica.update();
+		},
+		error => {
+			console.log(error)
+		}
+	)
+   }
 
+   filtrarData(): void {
+	this.getStatsIntensidad();
+   }
+
+   filtrarMeses(): void {
+	   if(this.categoriaFiltro==""){
+		this.mesesFiltrado = this.meses;
+	   } else {
+		   this.mesesFiltrado = this.data.filter(el=> el.categoria==this.categoriaFiltro).map(el => el.label.split("-")[1]+"-"+el.label.split("-")[0]);
+		   this.mesesFiltrado =  [...new Set(this.mesesFiltrado)];
+	   }
+	   this.mesFiltro = '';
    }
 
 }

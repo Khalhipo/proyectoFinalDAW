@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-03-2021 a las 13:22:55
+-- Tiempo de generación: 17-03-2021 a las 12:41:46
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -73,14 +73,21 @@ CREATE TABLE `ejercicios` (
 --
 
 INSERT INTO `ejercicios` (`id`, `nombre`, `categoria`, `descripcion`) VALUES
-(1, 'press banca', 'pecho', ''),
-(2, 'press inclinado', 'pecho', ''),
+(1, 'press banca', 'torso', ''),
+(2, 'press banca inclinado', 'torso', ''),
 (3, 'pull up', 'espalda', ''),
 (4, 'seal row', 'espalda', ''),
 (5, 'squat', 'pierna', ''),
 (6, 'peso muerto', 'pierna', ''),
-(7, 'press militar', 'hombro', ''),
-(8, 'elevaciones laterales', 'hombro', '');
+(7, 'press militar', 'brazo', ''),
+(8, 'elevaciones laterales', 'brazo', ''),
+(9, 'press banca declinado', 'torso', ''),
+(10, 'push press', 'brazo', ''),
+(11, 'squat bulgara', 'pierna', ''),
+(12, 'prensa', 'pierna', ''),
+(17, 'cruce poleas', 'brazo', ''),
+(18, 'hip thrust', 'gluteo', ''),
+(19, 'ab wheel', 'core', '');
 
 -- --------------------------------------------------------
 
@@ -94,6 +101,22 @@ CREATE TABLE `ejerciciosmostrar` (
 ,`categoria` varchar(255)
 ,`id_entrenamiento` int(11)
 ,`id_ejercicio` int(11)
+,`series` int(11)
+,`repeticiones` int(11)
+,`peso` float
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `ejerciciosstats`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `ejerciciosstats` (
+`id_usuario` int(11) unsigned
+,`fecha` date
+,`nombre` varchar(255)
+,`categoria` varchar(255)
 ,`series` int(11)
 ,`repeticiones` int(11)
 ,`peso` float
@@ -117,8 +140,28 @@ CREATE TABLE `entrenamientos` (
 --
 
 INSERT INTO `entrenamientos` (`id`, `id_usuario`, `fecha`, `comentario`) VALUES
-(7, 3, '2021-03-08', 'Este entrenamiento fue muy bien'),
-(8, 3, '2021-03-09', 'El día de pierna pica mucho');
+(20, 3, '2021-03-12', 'jejeje'),
+(21, 3, '2021-03-13', 'jjjjj'),
+(22, 3, '2021-03-14', 'asasasas'),
+(23, 3, '2021-04-06', 'jsjjs'),
+(24, 3, '2021-04-08', 'asasasas'),
+(25, 3, '2021-04-23', 'asasasas'),
+(26, 3, '2021-05-05', 'asas'),
+(27, 3, '2021-05-13', 'asas'),
+(28, 3, '2021-05-27', 'asasas'),
+(29, 3, '2021-06-09', 'sdsdsd'),
+(30, 3, '2021-07-22', 'fdfdfd'),
+(31, 3, '2021-07-24', 'ssssssssssss'),
+(32, 3, '2021-08-13', 'rerererre'),
+(33, 6, '2021-03-15', 'aaa'),
+(34, 6, '2021-03-16', 'ss'),
+(35, 6, '2021-04-13', 'sss'),
+(36, 6, '2021-04-20', 'kk'),
+(37, 7, '2021-03-15', 'wewe'),
+(38, 7, '2021-04-14', 'sss'),
+(39, 7, '2021-05-13', 'ss'),
+(40, 6, '2021-05-14', 'jejej'),
+(41, 3, '2021-03-19', 'jejejej');
 
 -- --------------------------------------------------------
 
@@ -140,13 +183,29 @@ CREATE TABLE `etto_ejercicios` (
 --
 
 INSERT INTO `etto_ejercicios` (`id`, `id_entrenamiento`, `id_ejercicio`, `series`, `repeticiones`, `peso`) VALUES
-(1, 7, 1, 4, 8, 64),
-(2, 7, 3, 7, 5, 55),
-(3, 7, 5, 5, 5, 78),
-(4, 7, 7, 4, 8, 12),
-(5, 8, 3, 5, 8, 4),
-(6, 8, 2, 7, 8, 50),
-(7, 8, 6, 8, 5, 8);
+(31, 20, 1, 5, 5, 5),
+(32, 21, 6, 5, 5, 5),
+(33, 22, 3, 5, 5, 5),
+(34, 23, 3, 5, 4, 5),
+(35, 24, 6, 8, 8, 45),
+(36, 25, 4, 8, 5, 4),
+(37, 26, 6, 5, 5, 88),
+(38, 27, 5, 8, 8, 8),
+(39, 28, 10, 7, 5, 7),
+(40, 29, 6, 4, 5, 5),
+(41, 30, 3, 5, 7, 8),
+(42, 31, 11, 5, 5, 4),
+(43, 32, 5, 5, 5, 5),
+(44, 33, 4, 5, 8, 5),
+(46, 35, 3, 5, 4, 5),
+(47, 36, 3, 5, 5, 5),
+(48, 37, 1, 5, 8, 45),
+(49, 38, 3, 8, 5, 45),
+(50, 39, 11, 8, 5, 45),
+(51, 40, 3, 5, 5, 45),
+(52, 40, 6, 5, 4, 50),
+(53, 41, 18, 5, 5, 5),
+(54, 41, 19, 5, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -189,8 +248,28 @@ CREATE TABLE `pesos` (
 --
 
 INSERT INTO `pesos` (`id`, `id_usuario`, `peso`, `fecha`) VALUES
-(5, 3, 75, '2021-03-08'),
-(6, 3, 78, '2021-03-09');
+(18, 3, 75, '2021-03-12'),
+(19, 3, 77, '2021-03-13'),
+(20, 3, 81, '2021-03-14'),
+(24, 3, 85, '2021-04-06'),
+(25, 3, 95, '2021-04-08'),
+(26, 3, 65, '2021-04-23'),
+(27, 3, 75, '2021-05-05'),
+(28, 3, 73, '2021-05-13'),
+(29, 3, 61, '2021-05-27'),
+(30, 3, 96, '2021-06-09'),
+(31, 3, 83, '2021-07-22'),
+(32, 3, 20, '2021-07-24'),
+(33, 3, 75, '2021-08-13'),
+(34, 6, 85, '2021-03-15'),
+(35, 6, 77, '2021-03-16'),
+(36, 6, 75, '2021-04-13'),
+(37, 6, 55, '2021-04-20'),
+(38, 7, 75, '2021-03-15'),
+(39, 7, 75, '2021-04-14'),
+(40, 7, 85, '2021-05-13'),
+(41, 6, 78, '2021-05-14'),
+(42, 3, 78, '2021-03-19');
 
 -- --------------------------------------------------------
 
@@ -230,6 +309,15 @@ INSERT INTO `users` (`id`, `nombre`, `password`, `email`, `sexo`, `altura`, `pes
 DROP TABLE IF EXISTS `ejerciciosmostrar`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ejerciciosmostrar`  AS  select `etto_ejercicios`.`id` AS `id`,`ejercicios`.`nombre` AS `nombre`,`ejercicios`.`categoria` AS `categoria`,`etto_ejercicios`.`id_entrenamiento` AS `id_entrenamiento`,`etto_ejercicios`.`id_ejercicio` AS `id_ejercicio`,`etto_ejercicios`.`series` AS `series`,`etto_ejercicios`.`repeticiones` AS `repeticiones`,`etto_ejercicios`.`peso` AS `peso` from (`etto_ejercicios` join `ejercicios`) where `etto_ejercicios`.`id_ejercicio` = `ejercicios`.`id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `ejerciciosstats`
+--
+DROP TABLE IF EXISTS `ejerciciosstats`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ejerciciosstats`  AS  select `entrenamientos`.`id_usuario` AS `id_usuario`,`entrenamientos`.`fecha` AS `fecha`,`ejerciciosmostrar`.`nombre` AS `nombre`,`ejerciciosmostrar`.`categoria` AS `categoria`,`ejerciciosmostrar`.`series` AS `series`,`ejerciciosmostrar`.`repeticiones` AS `repeticiones`,`ejerciciosmostrar`.`peso` AS `peso` from (`entrenamientos` join `ejerciciosmostrar`) where `entrenamientos`.`id` = `ejerciciosmostrar`.`id_entrenamiento` ;
 
 --
 -- Índices para tablas volcadas
@@ -299,19 +387,19 @@ ALTER TABLE `amigos`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `entrenamientos`
 --
 ALTER TABLE `entrenamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `etto_ejercicios`
 --
 ALTER TABLE `etto_ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
@@ -323,7 +411,7 @@ ALTER TABLE `mensajes`
 -- AUTO_INCREMENT de la tabla `pesos`
 --
 ALTER TABLE `pesos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

@@ -1,0 +1,26 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header {
+    background-color: #9A239E;
+    color: white;
+}
+
+.card {
+    color: black;
+    background-color: #fed8b1;
+}
+
+.card-body {
+    color: black;
+    background-color:  #fed8b1;
+}
+
+.card-body > p {
+    color: black;
+    background-color: #fed8b1;
+    padding: 1em 1em;
+    border-radius: 5px;
+}

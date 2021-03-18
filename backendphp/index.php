@@ -90,26 +90,6 @@ switch($control[0]) {
     }  
     break;
 
-  case "notas":
-    require_once("controllers/notas.controller.php");
-    $notas = new NotasController($conexion);
-    switch(METODO) {
-      case "GET":
-        $notas->obtenerNotas();
-        break;
-      case "POST":
-        $notas->publicarNota();
-        break;
-      case "PUT":
-        $notas->editarNota();
-        break;
-      case "DELETE":
-        $notas->eliminarNota($control[1]);
-        break;
-      default: exit(json_encode(["Bienvenido al Backend con routes"]));
-    }
-    break;
-
     case "entrenamientos":
     require_once("controllers/entrenamientos.controller.php");
     $entrenamientos = new EntrenamientosController($conexion);
