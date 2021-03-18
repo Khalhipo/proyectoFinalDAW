@@ -17,7 +17,7 @@ export class ChartjsVolumenComponent implements OnInit {
 
   categoriaFiltro: string = '';
   mesFiltro: string = '';
-  data: any;
+  mesesCategorias: any;
 
   constructor(private statsService: StatsService) { }
   
@@ -66,29 +66,23 @@ export class ChartjsVolumenComponent implements OnInit {
 				  }
 			  }
 	})
-	this.iniciarChart();
+	this.getStatsVolumen();
+	this.rellenarCategorias();
   }
 
-  iniciarChart(): void{
-	this.statsService.obtenerStatsVolumen(this.categoriaFiltro,this.mesFiltro).subscribe(
+  rellenarCategorias(): void {
+	  this.statsService.obtenerCategorias().subscribe(
 		  respuesta => {
-			  console.log(respuesta),
-			  this.data = respuesta;
-			  this.grafica.data.labels = respuesta.map(el => el.label);
-			  this.grafica.data.datasets[0].data = respuesta.map(el => el.data);
+			  console.log(respuesta);
+			  this.mesesCategorias = respuesta;
 			  this.categorias = respuesta.map(el=>el.categoria);
 			  this.categorias = [...new Set(this.categorias)];
-
-			  this.meses = respuesta.map(el => el.label.split("-")[1]+"-"+el.label.split("-")[0]);
+			  this.meses = respuesta.map(el => el.fecha.split("-")[1]+"-"+el.fecha.split("-")[0]);
 			  this.meses = [...new Set(this.meses)];
 			  this.mesesFiltrado = this.meses;
-			  this.grafica.update();
-		  },
-		  error => {
-			  console.log(error)
 		  }
 	  )
-   }
+  }
 
   getStatsVolumen(): void{
 	this.statsService.obtenerStatsVolumen(this.categoriaFiltro,this.mesFiltro).subscribe(
@@ -112,7 +106,7 @@ export class ChartjsVolumenComponent implements OnInit {
 	   if(this.categoriaFiltro==""){
 		this.mesesFiltrado = this.meses;
 	   } else {
-		   this.mesesFiltrado = this.data.filter(el=> el.categoria==this.categoriaFiltro).map(el => el.label.split("-")[1]+"-"+el.label.split("-")[0]);
+		   this.mesesFiltrado = this.mesesCategorias.filter(el=> el.categoria==this.categoriaFiltro).map(el => el.fecha.split("-")[1]+"-"+el.fecha.split("-")[0]);
 		   this.mesesFiltrado =  [...new Set(this.mesesFiltrado)];
 	   }
 	   this.mesFiltro = '';

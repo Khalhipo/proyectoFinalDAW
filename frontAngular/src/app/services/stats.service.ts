@@ -26,4 +26,8 @@ export class StatsService {
   obtenerEttoCategoria(): Observable<any> {
     return this.http.get(url+'ettocategoria');
   }
-}
+
+  obtenerCategorias(): Observable<any> {
+    return this.http.get(url+'categorias');
+  }
+ }

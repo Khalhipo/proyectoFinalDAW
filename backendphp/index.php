@@ -139,6 +139,9 @@ switch($control[0]) {
             break;
           case "ettocategoria":
               $stats->obtenerEttoCategoria();
+            break;
+          case "categorias":
+              $stats->obtenerCategorias();
         }
         break;
       case "POST":
