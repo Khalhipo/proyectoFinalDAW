@@ -74,6 +74,7 @@ export class WorkoutUpdateComponent implements OnInit {
   }
   
   if(ejercicioValido){
+  this.mensaje = '';
   this.ejerciciosETTO.push({id_ejercicio: this.ejercicio.id_ejercicio,nombre:this.ejercicio.nombre, categoria: this.ejercicio.categoria, 
   series: this.ejercicio.series,repeticiones: this.ejercicio.repeticiones, peso: this.ejercicio.peso});
   this.ejercicio.series = null;
@@ -115,6 +116,7 @@ export class WorkoutUpdateComponent implements OnInit {
       this.mensaje = 'No has añadido ningún ejercicio';
     }
     if(ettoValido) {
+      this.mensaje = '';
     this.entrenamiento = {
       id: this.id_entrenamiento,
       fecha: this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day,
@@ -159,6 +161,12 @@ export class WorkoutUpdateComponent implements OnInit {
         this.mensajeModal = error.error.error
       }
     )
+  }
+
+  limpiarCampos() {
+    this.nuevoEjercicio.categoria = '';
+    this.nuevoEjercicio.nombre = '';
+    this.mensajeModal = '';
   }
 
 }

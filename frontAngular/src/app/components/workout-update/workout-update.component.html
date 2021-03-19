@@ -2,17 +2,17 @@
     <div class="card-header">
         <h6 class="card-title"><i class="fas fa-list-alt"></i> Editar entrenamiento</h6> 
         <div>
-            <button class="btn btn-primary" (click)="cambiarComponente()"><i class="fas fa-arrow-left">Volver</i></button>
+            <button class="btn btn-primary" (click)="cambiarComponente()"><i class="fas fa-arrow-left"></i></button>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-        Categoría: <select [(ngModel)]="ejercicio.categoria" (change)="limpiarEjercicio($event)" class="form-control">
+        <strong>Categoría:</strong> <select [(ngModel)]="ejercicio.categoria" (change)="limpiarEjercicio($event)" class="form-control">
             <option value="" disabled>Elige una categoría</option>
             <option *ngFor="let categoria of categorias" [value]="categoria">{{categoria}}</option>
         </select>
-        Ejercicio: <select [(ngModel)]="ejercicio.id_ejercicio" (focus)="filtrarCategoria($event)"  (change)="cambiarEjercicio($event)" class="form-control">
+        <strong>Ejercicio:</strong> <select [(ngModel)]="ejercicio.id_ejercicio" (focus)="filtrarCategoria($event)"  (change)="cambiarEjercicio($event)" class="form-control">
             <option value="" disabled>Elige un ejercicio</option>
             <option *ngFor="let ejercicioLista of listaEjerciciosMostrar" [(value)]="ejercicioLista.id">{{ejercicioLista.nombre}}
             </option>
@@ -23,7 +23,7 @@
         <!--MODAL CREAR EJERCICIO-->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearEjercicio">
+        <button type="button" (click)="limpiarCampos()" class="btn btn-primary" data-toggle="modal" data-target="#crearEjercicio">
             Crear ejercicio
           </button>
           
@@ -59,16 +59,27 @@
 
     </div>
     <div class="col-md-6">
-        <label>Series: </label><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series">
-        <label>Reps: </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps">
-        <label>Peso: </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)">
-    </div>
-    {{mensaje}}
+      <div style="display: flex; justify-content: space-between;">
+        <div><label><strong>Series:</strong> </label><br><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series"></div>
+        <div><label><strong>Reps:</strong> </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps"></div>
+        <div><label><strong>Peso:</strong> </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)"></div>
+      </div>
+      <div style="margin-top: 0.5em;" *ngIf="mensaje!=''" class="alert alert-primary" role="alert">
+        {{mensaje}}
+      </div>
+</div>
 </div>
     </div>
     <ul class="lista-ejercicios list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let ej of ejerciciosETTO">
-            Cat: {{ej.categoria}} Ej: {{ej.nombre}} Series: {{ej.series}} Reps: {{ej.repeticiones}} Peso: {{ej.peso}}  <button (click)="borrarEjercicio(ej)" class="btn btn-danger">Borrar ejercicio</button>
+        <li class="list-group-item" *ngFor="let ejercicio of ejerciciosETTO">
+          <div><img width="80px" src="assets/images/{{ejercicio.categoria}}.jpg" alt="{{ejercicio.categoria}}"></div>
+          <div class="contenedor-tituloEjercicio"><span class="ejercicioNombre">{{ejercicio.nombre |titlecase}}</span><br><span class="ejercicioCategoria">{{ejercicio.categoria}}</span></div>
+         <div class="contenedor-datosEjercicio">
+           <div class="data-ejercicio"><div><strong>Series</strong></div><div>{{ejercicio.series}}</div></div> 
+           <div class="data-ejercicio"><div><strong>Reps</strong></div><div>{{ejercicio.repeticiones}}</div></div> 
+           <div class="data-ejercicio"><div><strong>Peso (kg)</strong></div><div>{{ejercicio.peso}}</div></div>
+           <button (click)="borrarEjercicio(ejercicio)" title="Borrar" class="btn btn-danger"><i class="btn-borrar fas fa-trash-alt"></i></button>
+         </div>
         </li>
     </ul>
     <div class="card-body final">
@@ -78,7 +89,7 @@
                 <textarea [(ngModel)]="comentario" cols="40" class="form-control"></textarea>
             </div>
         <div class="col-md-3">
-        <h6 class="card-title"><i class="fas fa-weight"></i> Peso corporal</h6><input [(ngModel)]="pesoCorporal" select class="form-control" type="number" placeholder="Peso">
+        <h6 class="card-title"><i class="fas fa-weight"></i> Peso corporal (kg)</h6><input [(ngModel)]="pesoCorporal" select class="form-control" type="number" placeholder="Peso">
     </div>
 </div><br>
         <button (click)="editarEtto()" class="btn btn-info">Editar ETTO</button>

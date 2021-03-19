@@ -50,7 +50,6 @@ export class WorkoutCreateComponent implements OnInit {
         this.listaEjercicios = respuesta;
         this.categorias = this.listaEjercicios.map(el=>el.categoria);
         this.categorias = [...new Set(this.categorias)];
-        //this.listaEjerciciosMostrar = this.listaEjercicios.filter(el=> el.categoria == this.categorias[0]);
       },
       error => {
         console.log(error),
@@ -72,12 +71,14 @@ export class WorkoutCreateComponent implements OnInit {
   }
   
   if(ejercicioValido){
+  this.mensaje = '';
   this.ejerciciosETTO.push({id_ejercicio: this.ejercicio.id_ejercicio,nombre:this.ejercicio.nombre, categoria: this.ejercicio.categoria, 
   series: this.ejercicio.series,repeticiones: this.ejercicio.repeticiones, peso: this.ejercicio.peso});
   this.ejercicio.series = null;
   this.ejercicio.repeticiones = null;
   this.ejercicio.peso = null;
   this.ejercicio.nombre = '';
+  
 }
   }
 
@@ -113,6 +114,7 @@ export class WorkoutCreateComponent implements OnInit {
       this.mensaje = 'No has añadido ningún ejercicio';
     }
     if(ettoValido) {
+      this.mensaje = '';
     this.entrenamiento = {
       fecha: this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day,
       comentario: this.comentario,
@@ -148,6 +150,7 @@ export class WorkoutCreateComponent implements OnInit {
   limpiarCampos() {
     this.nuevoEjercicio.categoria = '';
     this.nuevoEjercicio.nombre = '';
+    this.mensajeModal = '';
   }
 
 }

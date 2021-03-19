@@ -1,11 +1,17 @@
-.lista-ejercicios {
-  height: 200px;
-  overflow-y: auto;
+* {
+  box-sizing: border-box;
 }
 
 .lista-ejercicios {
   max-height: 400px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  display: flex;
+  margin-left: 4.5em;
+  margin-right: 4.5em;
+}
+
+.lista-ejercicios::-webkit-scrollbar {
+  display: none;
 }
 
 .card-header {
@@ -51,16 +57,45 @@ li {
   text-decoration: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
 }
 
 .datos-ad {
   display: flex;
   justify-content: space-between;
+  margin-left: 0.2em;
 }
 
-/*
-.final {
-    color: white;
-    background-color:  #9A239E;
+img {
+  border-radius: 50%;
 }
-*/
+
+.ejercicioNombre {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ejercicioCategoria {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.contenedor-datosEjercicio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contenedor-tituloEjercicio {
+  text-align: center;
+}
+
+.data-ejercicio {
+  background-color: white;
+  margin: 0 1em;
+  padding: 0.5em 0.5em;
+  border-radius: 15%;
+  text-align: center;
+}

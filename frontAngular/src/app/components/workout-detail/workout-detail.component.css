@@ -4,9 +4,14 @@
 
 .lista-ejercicios {
   max-height: 400px;
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
-  flex-wrap: wrap;
+  margin-left: 4.5em;
+  margin-right: 4.5em;
+}
+
+.lista-ejercicios::-webkit-scrollbar {
+  display: none;
 }
 
 .card-header {
@@ -54,6 +59,8 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
 }
 
 .card-body {
@@ -72,9 +79,6 @@ img {
   border-radius: 50%;
 }
 
-.contenedor-tituloEjercicio {
-}
-
 .ejercicioNombre {
   font-size: 16px;
   font-weight: bold;
@@ -87,6 +91,18 @@ img {
 
 .contenedor-datosEjercicio {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.contenedor-tituloEjercicio {
+  text-align: center;
+}
+
+.data-ejercicio {
+  background-color: white;
+  margin: 0 1em;
+  padding: 0.5em 0.5em;
+  border-radius: 15%;
+  text-align: center;
 }
