@@ -20,7 +20,7 @@
         <!--MODAL CREAR EJERCICIO-->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearEjercicio">
+        <button type="button" (click)="limpiarCampos()" class="btn btn-primary" data-toggle="modal" data-target="#crearEjercicio">
             Crear ejercicio
           </button>
           
@@ -62,7 +62,7 @@
     {{mensaje}}
 </div>
     </div>
-    <ul class="lista-ejercicios list-group list-group-flush">
+    <ul *ngIf="ejerciciosETTO.length!=0" class="lista-ejercicios list-group list-group-flush">
         <li class="list-group-item" *ngFor="let ej of ejerciciosETTO">
             Cat: {{ej.categoria}} Ej: {{ej.nombre}} Series: {{ej.series}} Reps: {{ej.repeticiones}} Peso: {{ej.peso}}  <button (click)="borrarEjercicio(ej)" class="btn btn-danger">Borrar ejercicio</button>
         </li>

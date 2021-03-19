@@ -1,63 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
 .lista-ejercicios {
-    max-height: 400px;
-    overflow-y: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 ::placeholder {
-    color: white;
+  color: white;
 }
 
 input {
-    padding:0 1em;
-    font-size: 14px;
-    
+  padding: 0 1em;
+  font-size: 14px;
 }
 
 input:focus {
-    background-color: #fed8b1;
+  background-color: #fed8b1;
 }
 
 .card-header {
-    background-color: #9A239E;
-    color: white;
+  background-color: #9a239e;
+  color: white;
 }
 
 .icono {
-    color: #95EB3A;
+  color: #95eb3a;
 }
 
 .card {
-    color: black;
-    background-color: orange;
+  color: black;
+  background-color: orange;
 }
 
 .list-group-item {
-    background-color:#fed8b1 ;
-    color: black;
-    box-shadow: 2px 2px 3px black;
-    border-radius: 5px;
-    margin: 0.5em ;
+  background-color: #fed8b1;
+  color: black;
+  box-shadow: 2px 2px 3px black;
+  border-radius: 5px;
+  margin: 0.5em;
 }
 
 li {
-    text-decoration: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-body {
-    color: white;
-    background-color:  #9A239E;
+  color: white;
+  background-color: #9a239e;
 }
 
 .card-body > p {
-    color: black;
-    background-color: #fed8b1;
-    padding: 1em 1em;
-    border-radius: 5px;
+  color: black;
+  background-color: #fed8b1;
+  padding: 1em 1em;
+  border-radius: 5px;
 }
 
+img {
+  border-radius: 50%;
+}
 
+.contenedor-tituloEjercicio {
+}
+
+.ejercicioNombre {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ejercicioCategoria {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.contenedor-datosEjercicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

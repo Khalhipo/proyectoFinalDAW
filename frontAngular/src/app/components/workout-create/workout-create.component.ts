@@ -115,8 +115,8 @@ export class WorkoutCreateComponent implements OnInit {
     if(ettoValido) {
     this.entrenamiento = {
       fecha: this.fecha.year + "-" + this.fecha.month + "-" + this.fecha.day,
-      comentario: this.comentario?this.comentario:null,
-      pesoCorporal: this.pesoCorporal?this.pesoCorporal:null,
+      comentario: this.comentario,
+      pesoCorporal: this.pesoCorporal,
       ejercicios: this.ejerciciosETTO
     }
     this.entrenamientoService.crearEtto(this.entrenamiento).subscribe(
@@ -143,6 +143,11 @@ export class WorkoutCreateComponent implements OnInit {
         this.mensajeModal = error.error.error
       }
     )
+  }
+
+  limpiarCampos() {
+    this.nuevoEjercicio.categoria = '';
+    this.nuevoEjercicio.nombre = '';
   }
 
 }
