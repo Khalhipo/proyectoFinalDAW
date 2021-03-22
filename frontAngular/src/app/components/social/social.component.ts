@@ -24,8 +24,22 @@ export class SocialComponent implements OnInit {
   infoUser: boolean = false;
   mensajesChat: Mensaje[] = [];
 
+  usuarioLogueado: string = '';
+
   ngOnInit(): void {
     this.listarAmigos();
+    this.obtenerUsuarioLogueado();
+  }
+
+  obtenerUsuarioLogueado(): void {
+    this.userService.obtenerPerfil().subscribe(
+      respuesta => {
+        this.usuarioLogueado = respuesta.email;
+      },
+      error => {console.log(error),
+        this.mensaje = error.error.error
+        }
+    )
   }
 
   info(): void {
@@ -37,6 +51,8 @@ export class SocialComponent implements OnInit {
       respuesta => {
         console.log(respuesta);
         this.users = respuesta;
+        this.users = this.users.filter(el=>!this.existeAmigo(el));
+        this.users = this.users.filter(el => el.email != this.usuarioLogueado)
       },
       error => {console.log(error),
       this.mensaje = error.error.error
@@ -44,11 +60,22 @@ export class SocialComponent implements OnInit {
     );
   }
 
+  existeAmigo(el){
+    let salida = false;
+    this.friendsUser.forEach(element => {
+      if(element.email == el.email){
+        salida = true;
+      }
+    })
+    return salida;
+  }
+
   listarMensajes(id: number): void {
     this.servicioMensaje.listarMensajes(id).subscribe(
       respuesta => {
         console.log(respuesta);
         this.mensajesChat = respuesta;
+        this.listarAmigos();
       },
       error => {
         console.log(error),

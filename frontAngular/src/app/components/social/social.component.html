@@ -40,7 +40,7 @@
             </div>
         <div class="btns-friend">
             <button class="btn btn-danger" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
-            <button class="btn-chat btn btn-success" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"></i></button>
+            <button class="btn-chat btn btn-success" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"><span *ngIf="user.numMensajes>0" class="badge">{{user.numMensajes}}</span></i></button>
         </div>
         </div>
         </li>
@@ -66,10 +66,14 @@
     </div>
     <div class="chat card-body">
         <ul *ngIf="mensajesChat.length>0; else chatVacio">
-            <li *ngFor="let message of mensajesChat" class="list-group-item">
-               <span *ngIf="message.idRemitente == userSelected.id;else usuarioLogueado"><strong>{{userSelected.nombre}}:</strong> {{message.mensaje}}</span>
+            <li *ngFor="let message of mensajesChat" class="list-group-item" [ngClass]="{'mensajeUsuario': message.idRemitente == userSelected.id, 'mensajeRemitente':message.idRemitente != userSelected.id}">
+               <span *ngIf="message.idRemitente == userSelected.id;else usuarioLogueado">{{message.mensaje}}</span>
                <ng-template #usuarioLogueado>
-                <span><strong >Yo:</strong> {{message.mensaje}}</span>
+                <span>{{message.mensaje}}</span>
+                <span *ngIf="message.leido==0;else noleido"><i style="float: right;" class="fas fa-check"></i></span>
+                <ng-template #noleido>
+                    <i style="float: right;" class="fas fa-check-double"></i>
+                </ng-template>
                </ng-template>
             </li>
         </ul>

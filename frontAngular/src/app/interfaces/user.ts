@@ -6,7 +6,8 @@ export interface User {
     sexo?: string,
     peso?: number,
     altura?: number,
-    imgSrc?: string
+    imgSrc?: string,
+    numMensajes?: number
 }
 
 export interface accesoUsuario {

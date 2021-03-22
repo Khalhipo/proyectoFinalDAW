@@ -56,9 +56,9 @@
     </div>
     <div class="col-md-6">
         <div style="display: flex; justify-content: space-between;">
-          <div><label><strong>Series:</strong> </label><br><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series"></div>
-          <div><label><strong>Reps:</strong> </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps"></div>
-          <div><label><strong>Peso:</strong> </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)"></div>
+          <div><label><strong>Series:</strong> </label><br><input select [(ngModel)]="ejercicio.series" class="form-control" type="number" placeholder="Series" min="1"></div>
+          <div><label><strong>Reps:</strong> </label><input select [(ngModel)]="ejercicio.repeticiones" class="form-control" type="number" placeholder="Reps" min="1"></div>
+          <div><label><strong>Peso:</strong> </label><input select [(ngModel)]="ejercicio.peso" class="form-control" type="number" placeholder="Peso (kg)" min="0"></div>
         </div>
         <div style="margin-top: 0.5em;" *ngIf="mensaje!=''" class="alert alert-primary" role="alert">
           {{mensaje}}
@@ -69,7 +69,7 @@
     <ul *ngIf="ejerciciosETTO.length!=0" class="lista-ejercicios list-group list-group-flush">
         <li class="list-group-item" *ngFor="let ejercicio of ejerciciosETTO">
           <div><img width="80px" src="assets/images/{{ejercicio.categoria}}.jpg" alt="{{ejercicio.categoria}}"></div>
-          <div class="contenedor-tituloEjercicio"><span class="ejercicioNombre">{{ejercicio.nombre |titlecase}}</span><br><span class="ejercicioCategoria">{{ejercicio.categoria}}</span></div>
+          <div class="contenedor-tituloEjercicio"><span class="ejercicioNombre">{{ejercicio.nombre |titlecase}}</span><br><span class="ejercicioCategoria">{{ejercicio.categoria|titlecase}}</span></div>
          <div class="contenedor-datosEjercicio">
            <div class="data-ejercicio"><div><strong>Series</strong></div><div>{{ejercicio.series}}</div></div> 
            <div class="data-ejercicio"><div><strong>Reps</strong></div><div>{{ejercicio.repeticiones}}</div></div> 

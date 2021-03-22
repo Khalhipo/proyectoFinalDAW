@@ -8,96 +8,94 @@
   display: flex;
   margin-left: 4.5em;
   margin-right: 4.5em;
-  }
-  
-  .lista-ejercicios::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  ::placeholder {
-    color: white;
-  }
-  
-  input {
-    padding: 0 1em;
-    font-size: 14px;
-  }
-  
-  .card-header,
-  .modal-header {
-    background-color: #9a239e;
-    color: white;
-  }
-  
-  .icono {
-    color: #95eb3a;
-  }
-  
-  .card,
-  .modal-body,
-  .modal-footer {
-    color: black;
-    background-color: orange;
-  }
-  
-  .list-group-item {
-    background-color: #fed8b1;
-    color: black;
-    box-shadow: 2px 2px 3px black;
-    border-radius: 5px;
-    margin: 0.5em;
-  }
-  
-  li {
-    text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 2.5em;
-    padding-right: 2.5em;
-  }
-  
-  .datos-ad {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 0.2em;
-  }
-  
+}
 
-  img {
-    border-radius: 50%;
-  }
-  
-  .ejercicioNombre {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .ejercicioCategoria {
-    font-size: 14px;
-    font-style: italic;
-  }
-  
-  .contenedor-datosEjercicio {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .contenedor-tituloEjercicio {
-    text-align: center;
-  }
-  
-  .data-ejercicio {
-    background-color: white;
-    margin: 0 1em;
-    padding: 0.5em 0.5em;
-    border-radius: 15%;
-    text-align: center;
-  }
-  
+.lista-ejercicios::-webkit-scrollbar {
+  display: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+::placeholder {
+  color: white;
+}
+
+input {
+  padding: 0 1em;
+  font-size: 14px;
+}
+
+.card-header,
+.modal-header {
+  background-color: #9a239e;
+  color: white;
+}
+
+.icono {
+  color: #95eb3a;
+}
+
+.card,
+.modal-body,
+.modal-footer {
+  color: black;
+  background-color: orange;
+}
+
+.list-group-item {
+  background-color: #fed8b1;
+  color: black;
+  box-shadow: 2px 2px 3px black;
+  border-radius: 5px;
+  margin: 0.5em;
+}
+
+li {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+.datos-ad {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.2em;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.ejercicioNombre {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ejercicioCategoria {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.contenedor-datosEjercicio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contenedor-tituloEjercicio {
+  text-align: center;
+}
+
+.data-ejercicio {
+  background-color: white;
+  margin: 0 1em;
+  padding: 0.5em 0.5em;
+  border-radius: 15%;
+  text-align: center;
+}

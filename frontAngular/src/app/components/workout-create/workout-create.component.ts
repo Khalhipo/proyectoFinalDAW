@@ -60,12 +60,22 @@ export class WorkoutCreateComponent implements OnInit {
 
   addEjercicio(): void {
     let ejercicioValido = true;
-  if(this.ejercicio.series == null || this.ejercicio.repeticiones == null || this.ejercicio.nombre == "") {
+
+  if(this.ejercicio.nombre == "") {
+    this.mensaje = 'Este ejercicio ya está incluido en el ETTO';
+    ejercicioValido = false;
+  }  
+  
+  if(this.ejercicio.series < 0 || this.ejercicio.repeticiones < 0 || this.ejercicio.peso < 0){
+    this.mensaje = 'Sólamente valores positivos';
+    ejercicioValido = false;
+  }  
+  if(this.ejercicio.series == null || this.ejercicio.repeticiones == null || this.ejercicio.peso == null) {
     this.mensaje = "Faltan parámetros";
     ejercicioValido = false;
 
   } 
-  if(this.ejercicioRepetido(this.ejercicio.nombre) && this.ejerciciosETTO.length > 0) {
+  if((this.ejercicioRepetido(this.ejercicio.nombre) && this.ejerciciosETTO.length > 0)) {
     this.mensaje = "Este ejercicio ya está incluido en el ETTO";
     ejercicioValido = false;
   }
