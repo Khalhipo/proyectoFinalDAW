@@ -11,13 +11,13 @@ input {
   font-size: 14px;
 }
 
-input:focus {
-  background-color: #fed8b1;
+.chat {
+  max-height: 330px;
+  overflow-y: auto;
 }
 
-.chat {
-  max-height: 250px;
-  overflow-y: auto;
+.chat::-webkit-scrollbar {
+  display: none;
 }
 
 .lista-amigos {
@@ -91,7 +91,7 @@ input:focus {
   background-color: #fed8b1;
   color: black;
   box-shadow: 2px 2px 3px black;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0.5em;
 }
 
@@ -124,4 +124,36 @@ li {
 
 .mensajeUsuario {
   margin-right: 4em;
+}
+
+.btn-principal {
+  background-color: #9a239e;
+  color: white;
+}
+
+.btn-principal:hover {
+  background-color: #8a018f;
+}
+
+.btn-secundario {
+  background-color: #d519db;
+  color: white;
+}
+
+.btn-secundario:hover {
+  background-color: #bb24c1fd;
+}
+
+.btn-cancel {
+  background-color: #e04b10;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #bd491b;
+}
+
+.alert {
+  background-color: #e04b10;
+  color: white;
 }

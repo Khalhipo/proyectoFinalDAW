@@ -38,7 +38,7 @@ export class ChartjsIntensidadComponent implements OnInit {
 				  responsive: true,
 				  title: {
 					  display: true,
-					  text: 'Intensidad de trabajo (Series x Reps x Peso)'
+					  text: 'Intensidad = (Series x Repes x Peso)'
 				  },
 				  tooltips: {
 					  mode: 'index',

@@ -38,7 +38,7 @@ export class ChartjsVolumenComponent implements OnInit {
 				  responsive: true,
 				  title: {
 					  display: true,
-					  text: 'Volumen de trabajo (Series x Reps)'
+					  text: 'Volumen = (Series x Repes)'
 				  },
 				  tooltips: {
 					  mode: 'index',

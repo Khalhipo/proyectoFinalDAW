@@ -13,13 +13,13 @@ export class RegisterComponent implements OnInit {
   mensaje: string = '';
 
   formRegister = this.fb.group({
-    nombre:[''],
+    nombre:['', [Validators.required, Validators.minLength(4)]],
     password:['',[Validators.required,Validators.minLength(6)]],
     password2:['', [Validators.required]],
     email:['', [Validators.required, Validators.email]],
-    sexo:[''],
-    peso:[''],
-    altura:['']
+    sexo:['',[Validators.required]],
+    peso:['',[Validators.required,Validators.min(0)]],
+    altura:['',[Validators.required,Validators.min(0)]]
   })
   constructor(private fb: FormBuilder, private servicioUsuario: UserService, private irHacia: Router) { }
 
@@ -51,6 +51,18 @@ export class RegisterComponent implements OnInit {
   }
   get email1(){
     return this.formRegister.get("email");
+  }
+
+  get peso1(){
+    return this.formRegister.get("peso");
+  }
+
+  get altura1(){
+    return this.formRegister.get("altura");
+  }
+
+  get sexo1(){
+    return this.formRegister.get("sexo");
   }
 
   changeSexo(e): void {

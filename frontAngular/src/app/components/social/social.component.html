@@ -1,4 +1,4 @@
-<!--Que salga el nombre, y al pinchar en el nombre salga toda la información-->
+<div class="container pb-5">
 <div class="row">
     <div class="col-md-6">
 <div class="mx-auto m-4" style="width: 60vh;">
@@ -16,13 +16,13 @@
                     <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
                     </div>
                 <div class="btns-friend">
-                    <button class="btn btn-info" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
+                    <button class="btn btn-principal" title="Agregar a tus amigos" (click)="addFriend(user)"><i class="fas fa-user-plus"></i></button>
                 </div>
                 </div>
         </li>
     </ul>
 </div>
-<div class="alert alert-danger" role="alert" *ngIf="mensaje">
+<div class="alert" role="alert" *ngIf="mensaje">
     <strong>{{mensaje}}</strong>
 </div>
 <div class="card mt-4">
@@ -39,12 +39,12 @@
             <div><span class="data-email"><i class="fas fa-envelope-square"></i> {{user.email}}</span></div>
             </div>
         <div class="btns-friend">
-            <button class="btn btn-danger" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
-            <button class="btn-chat btn btn-success" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"><span *ngIf="user.numMensajes>0" class="badge">{{user.numMensajes}}</span></i></button>
+            <button class="btn btn-danger" title="Borrar amigo" (click)="borrarAmigo(user.id)"><i class="fas fa-user-minus"></i></button> 
+            <button class="btn-chat btn btn-success" title="Abrir chat" (click)='userSelected = user;listarMensajes(user.id)'><i class="fas fa-comments"><span *ngIf="user.numMensajes>0" class="badge">{{user.numMensajes}}</span></i></button>
         </div>
         </div>
         </li>
-            <div *ngIf="friendsUser.length==0" class="alert alert-info" role="alert">
+            <div *ngIf="friendsUser.length==0" class="alert" role="alert">
                 <p>Aún no has añadido ningún amigo</p>
               </div>
     </ul>
@@ -61,7 +61,7 @@
               <img  class="img-user-chat img-thumbnail" src="{{userSelected.imgSrc ? userSelected.imgSrc : 'assets/images/foto_perfil.jpg'}}">
               <strong>{{userSelected.nombre}}</strong>
             </div>
-          <button (click)="userSelected = null" class="btn btn-primary"><i class="fas fa-times"></i></button>
+          <button (click)="userSelected = null" class="btn btn-danger"><i class="fas fa-times"></i></button>
         </div>
     </div>
     <div class="chat card-body">
@@ -83,9 +83,10 @@
     </div>
     <div class="card-body">
             <input class="form-control" type="text" [(ngModel)]="mensajeEnviado.mensaje" placeholder="Escribe tu mensaje aquí...">
-            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-info btn-block" (click)="escribirMensaje()">Enviar</button>
-            <button [disabled]="mensajesChat.length==0" class="btn btn-danger btn-block" (click)="borrarChat(userSelected.id)">Borrar conversación</button>
+            <button [disabled]="!mensajeEnviado.mensaje" class="btn btn-principal btn-block" (click)="escribirMensaje()">Enviar</button>
+            <button [disabled]="mensajesChat.length==0" class="btn btn-cancel btn-block" (click)="borrarChat(userSelected.id)">Borrar conversación</button>
     </div>
+</div>
 </div>
 </div>
 </div>

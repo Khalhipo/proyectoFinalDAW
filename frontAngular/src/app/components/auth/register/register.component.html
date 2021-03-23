@@ -1,7 +1,7 @@
 <div class="row justify-content-center m-4">
     <div class="cold-md-8">
 <div class="card">
-    <div class="card-header h5 text-center"><h4>Registro</h4></div>
+    <div class="card-header h5 text-center"><h4>Register</h4></div>
     <div class="card-body">
     <form [formGroup]="formRegister" (submit)="submit()">
     <div class="row">
@@ -19,11 +19,11 @@
 <div class="col-md-6">
     <input class="form-control" type="text" formControlName="email" placeholder="Email"><br>
     <input class="form-control" type="password" formControlName="password2" placeholder="Repite Password"><br>
-    <input class="form-control" type="number" formControlName="peso" placeholder="Peso (kg)"><br>
-    <input class="form-control" type="number" formControlName="altura" placeholder="Altura (cm)"><br>
+    <input class="form-control" type="number" formControlName="peso" placeholder="Peso (kg)" min="0"><br>
+    <input class="form-control" type="number" formControlName="altura" placeholder="Altura (cm)" min="0"><br>
     </div>
 </div>
-    <button class="btn btn-info btn-block" [disabled]="formRegister.invalid" type="submit">Registrar</button>
+    <button class="btn btn-principal btn-block" [disabled]="formRegister.invalid" type="submit">Registrar</button>
 </form>
 </div>
 </div>
@@ -31,21 +31,35 @@
 </div>
 
 <div class="col-md-4">
-    <div class="alert alert-danger" role="alert" *ngIf="mensaje">
+    <div class="alert" role="alert" *ngIf="mensaje">
         <strong>{{mensaje}}</strong>
     </div>
 
-<div *ngIf="nombre1.invalid && (nombre1.dirty || nombre1.touched)" class="alert alert-danger">
-    <div *ngIf="nombre1.errors.required"><p>El nombre es requerido</p></div>
-    <div *ngIf="nombre1.errors.minlength"><p>El nombre tiene que tener 4 caracteres mínimo</p></div>
+<div *ngIf="nombre1.invalid && (nombre1.dirty || nombre1.touched)" class="alert">
+        <div *ngIf="nombre1.errors.required"><p>El nombre es requerido</p></div>
+        <div *ngIf="nombre1.errors.minlength"><p>El nombre tiene que tener mínimo 4 caracteres</p></div>
 </div>
 
-<div *ngIf="password1.invalid && (password1.dirty || password1.touched)" class="alert alert-danger">
+<div *ngIf="peso1.invalid && (peso1.dirty || peso1.touched)" class="alert">
+    <div *ngIf="peso1.errors.required"><p>El peso es requerido</p></div>
+    <div *ngIf="peso1.errors.min"><p>El peso tiene que ser mínimo 0</p></div>
+</div>
+
+<div *ngIf="altura1.invalid && (altura1.dirty || altura1.touched)" class="alert">
+    <div *ngIf="altura1.errors.required"><p>La altura es requerida</p></div>
+    <div *ngIf="altura1.errors.min"><p>La altura tiene que tener mínimo 0</p></div>
+</div>
+
+<div *ngIf="sexo1.invalid && (sexo1.dirty || sexo1.touched)" class="alert">
+    <div *ngIf="sexo1.errors.required"><p>El sexo es requerido</p></div>
+</div>
+
+<div *ngIf="password1.invalid && (password1.dirty || password1.touched)" class="alert">
     <div *ngIf="password1.errors.required"><p>El password es requerido</p></div>
     <div *ngIf="password1.errors.minlength"><p>El password tiene que tener 6 caracteres mínimo</p></div>
 </div>
 
-<div *ngIf="email1.invalid && (email1.dirty || email1.touched)" class="alert alert-danger">
+<div *ngIf="email1.invalid && (email1.dirty || email1.touched)" class="alert">
     <div *ngIf="email1.errors.required"><p>El email es requerido</p></div>
     <div *ngIf="email1.errors.email"><p>Revisa el email</p></div>
 </div>

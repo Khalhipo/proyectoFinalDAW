@@ -1,14 +1,12 @@
 nav {
-    background-color: #9A239E;
-
+  background-color: #9a239e;
 }
 
 * {
-    color: #95EB3A;
-    font-weight: bold;
+  color: #75e02f;
+  font-weight: bold;
 }
 
-
 a:hover {
-    color:greenyellow;
+  color: greenyellow;
 }

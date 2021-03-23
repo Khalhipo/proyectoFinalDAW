@@ -99,3 +99,35 @@ img {
   border-radius: 15%;
   text-align: center;
 }
+
+.btn-principal {
+  background-color: #9a239e;
+  color: white;
+}
+
+.btn-principal:hover {
+  background-color: #8a018f;
+}
+
+.btn-secundario {
+  background-color: #d519db;
+  color: white;
+}
+
+.btn-secundario:hover {
+  background-color: #bb24c1fd;
+}
+
+.btn-cancel {
+  background-color: #e04b10;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #bd491b;
+}
+
+.alert {
+  color: white;
+  background-color: #e04b10;
+}

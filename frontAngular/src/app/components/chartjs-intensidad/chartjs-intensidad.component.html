@@ -1,5 +1,11 @@
 <div class="card">
-    <div class="card-header"><h6>Intensidad</h6></div>
+    <div class="card-header">
+        <h6>Intensidad de entrenamiento</h6>
+        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+        ngbPopover="Cada barra corresponde a un etto concreto. Por defecto se muestra el histórico total. Puedes filtrar por categoría y/o mes">
+        <i class="text-white fas fa-info-circle"></i>
+    </button>
+    </div>
     <div class="card-body">
         <div width="100%">
             <canvas id="intensidad"></canvas>
@@ -18,7 +24,7 @@
             </select>
             </div>
             <div class="col-md-4">
-               <br><button (click)="filtrarData()" class="btn btn-info btn-block">Filtrar</button>
+               <br><button (click)="filtrarData()" class="btn btn-principal btn-block">Filtrar</button>
             </div>
             </div>
     </div>

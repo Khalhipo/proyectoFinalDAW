@@ -63,24 +63,26 @@ export class WorkoutUpdateComponent implements OnInit {
 
   addEjercicio(): void {
     let ejercicioValido = true;
-  if(this.ejercicio.nombre == "") {
-      this.mensaje = 'Este ejercicio ya está incluido en el ETTO';
+    if(this.ejercicio.series <= 0 || this.ejercicio.repeticiones <= 0 || this.ejercicio.peso < 0){
+      this.mensaje = 'Series mínimas 1, Repeticiones mínimas 1, Peso mínimo 0';
       ejercicioValido = false;
-    }  
-
-  if(this.ejercicio.series < 0 || this.ejercicio.repeticiones < 0 || this.ejercicio.peso < 0){
-      this.mensaje = 'Sólamente valores positivos';
+    }
+      
+    if(this.ejercicio.series == null || this.ejercicio.repeticiones == null || this.ejercicio.peso == null) {
+      this.mensaje = "Series, Repeticiones y Peso son obligatorios";
       ejercicioValido = false;
-    }  
-  if(this.ejercicio.series == null || this.ejercicio.repeticiones == null || this.ejercicio.peso == null) {
-    this.mensaje = "Faltan parámetros";
-    ejercicioValido = false;
-
-  } 
-  if((this.ejercicioRepetido(this.ejercicio.nombre) && this.ejerciciosETTO.length > 0)) {
-    this.mensaje = "Este ejercicio ya está incluido en el ETTO";
-    ejercicioValido = false;
-  }
+  
+    } 
+  
+    if(this.ejercicio.nombre == "") {
+      this.mensaje = 'Selecciona un ejercicio';
+      ejercicioValido = false;
+    }
+  
+    if((this.ejercicioRepetido(this.ejercicio.nombre) && this.ejerciciosETTO.length > 0)) {
+      this.mensaje = "Este ejercicio ya está incluido en el ETTO";
+      ejercicioValido = false;
+    }
   
   if(ejercicioValido){
   this.mensaje = '';
@@ -90,6 +92,7 @@ export class WorkoutUpdateComponent implements OnInit {
   this.ejercicio.repeticiones = null;
   this.ejercicio.peso = null;
   this.ejercicio.nombre = '';
+  this.ejercicio.id_ejercicio = null;
 }
   }
 
@@ -124,6 +127,12 @@ export class WorkoutUpdateComponent implements OnInit {
       ettoValido = false;
       this.mensaje = 'No has añadido ningún ejercicio';
     }
+
+    if(this.pesoCorporal<0) {
+      this.mensaje = 'El peso corporal no puede ser negativo';
+      ettoValido = false;
+    }
+
     if(ettoValido) {
       this.mensaje = '';
     this.entrenamiento = {

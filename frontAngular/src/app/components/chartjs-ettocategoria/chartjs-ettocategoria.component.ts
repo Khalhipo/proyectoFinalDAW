@@ -36,7 +36,7 @@ export class ChartjsEttocategoriaComponent implements OnInit {
 				  responsive: true,
 				  title: {
 					  display: true,
-					  text: 'Nº ejercicios por categoría'
+					  text: 'Nº total ejercicios por categoría'
 				  }
 			  }
 	})
