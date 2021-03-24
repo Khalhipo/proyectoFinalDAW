@@ -1,0 +1,19 @@
+.presentacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.titulo {
+  font-size: 4em;
+}
+
+.subtitulo {
+  font-size: 2em;
+}
+
+.descripcion {
+  font-size: 1em;
+}

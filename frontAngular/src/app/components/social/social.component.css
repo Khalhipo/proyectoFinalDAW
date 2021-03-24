@@ -16,17 +16,26 @@ input {
   overflow-y: auto;
 }
 
-.chat::-webkit-scrollbar {
-  display: none;
-}
-
 .lista-amigos {
   max-height: 410px;
   overflow-y: auto;
 }
 
+.chat::-webkit-scrollbar,
 .lista-amigos::-webkit-scrollbar {
-  display: none;
+  width: 12px; /* width of the entire scrollbar */
+}
+
+.chat::-webkit-scrollbar-track,
+.lista-amigos::-webkit-scrollbar-track {
+  background: orange; /* color of the tracking area */
+}
+
+.chat::-webkit-scrollbar-thumb,
+.lista-amigos::-webkit-scrollbar-thumb {
+  background-color: #fed8b1; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid orange; /* creates padding around scroll thumb */
 }
 
 .img-thumbnail {

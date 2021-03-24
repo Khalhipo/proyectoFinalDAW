@@ -24,6 +24,7 @@ import { ChartjsPesoComponent } from './components/chartjs-peso/chartjs-peso.com
 import { ChartjsVolumenComponent } from './components/chartjs-volumen/chartjs-volumen.component';
 import { ChartjsIntensidadComponent } from './components/chartjs-intensidad/chartjs-intensidad.component';
 import { ChartjsEttocategoriaComponent } from './components/chartjs-ettocategoria/chartjs-ettocategoria.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ChartjsEttocategoriaComponent } from './components/chartjs-ettocategori
     ChartjsPesoComponent,
     ChartjsVolumenComponent,
     ChartjsIntensidadComponent,
-    ChartjsEttocategoriaComponent
+    ChartjsEttocategoriaComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

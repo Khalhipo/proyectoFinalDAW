@@ -4,14 +4,24 @@
 
 .lista-ejercicios {
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   margin-left: 4.5em;
   margin-right: 4.5em;
 }
 
 .lista-ejercicios::-webkit-scrollbar {
-  display: none;
+  width: 12px; /* width of the entire scrollbar */
+}
+
+.lista-ejercicios::-webkit-scrollbar-track {
+  background: orange; /* color of the tracking area */
+}
+
+.lista-ejercicios::-webkit-scrollbar-thumb {
+  background-color: #fed8b1; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid orange; /* creates padding around scroll thumb */
 }
 
 .card-header {

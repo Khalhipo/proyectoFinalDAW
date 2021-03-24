@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  scrollbar-width: 12px thin; /* "auto" or "thin" */
+  scrollbar-color: #fed8b1 orange; /* scroll thumb and track */
+}
+
+body {
+  background-color: #d4d3dd;
+}
