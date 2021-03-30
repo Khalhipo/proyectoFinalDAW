@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         respuesta => {
           console.log(respuesta);
          this.servicioUsuario.guardarToken(respuesta);
-          this.irHacia.navigate(['/perfil']);
+          this.irHacia.navigate(['/profile']);
         },
         error => {
           console.log(error)

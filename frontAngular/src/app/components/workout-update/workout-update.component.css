@@ -61,6 +61,7 @@ input {
   box-shadow: 2px 2px 3px black;
   border-radius: 5px;
   margin: 0.5em;
+  min-width: fit-content;
 }
 
 li {
@@ -140,4 +141,44 @@ img {
 .alert {
   color: white;
   background-color: #e04b10;
+}
+
+@media (max-width: 950px) {
+  img {
+    width: 60px;
+  }
+  .ejercicioNombre {
+    font-size: small;
+  }
+  .ejercicioCategoria {
+    font-size: small;
+  }
+  .data-ejercicio {
+    font-size: small;
+    margin: 0 0.6em;
+  }
+  .lista-ejercicios {
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+  }
+}
+
+@media (max-width: 500px) {
+  img {
+    width: 50px;
+  }
+  .ejercicioNombre {
+    font-size: smaller;
+  }
+  .ejercicioCategoria {
+    font-size: smaller;
+  }
+  .data-ejercicio {
+    font-size: smaller;
+    margin: 0 0.3em;
+  }
+  .lista-ejercicios {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
 }

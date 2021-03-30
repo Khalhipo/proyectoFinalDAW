@@ -7,7 +7,7 @@
         <h5 class="card-title"><i class="icono fas fa-user-plus"></i> Añade a tus amigos</h5>
     </div>
     <ul class="list-group list-group-flush">
-        <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email" (input)="buscarConRetraso()">
+        <input class="form-control" type="text" [(ngModel)]="busqueda" placeholder="Busca por email..." (input)="buscarConRetraso()">
         <li *ngFor="let user of users" class="list-group-item">
             <div class="container-friend">
                 <div><img class="img-user img-thumbnail" src="{{user.imgSrc ? user.imgSrc : 'assets/images/foto_perfil.jpg'}}"></div>

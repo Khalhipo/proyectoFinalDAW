@@ -14,3 +14,8 @@
 .bg-primary {
   background-color: #d519db !important;
 }
+
+.container-home {
+  display: flex;
+  flex-wrap: wrap;
+}
