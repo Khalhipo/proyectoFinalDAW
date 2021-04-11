@@ -5,18 +5,254 @@
   justify-content: center;
   align-items: center;
 }
+/*
+h1 {
+  font-size: 4rem;
+  background: rgb(154, 35, 158);
+  background: linear-gradient(
+    183deg,
+    rgba(154, 35, 158, 1) 0%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+*/
 
 .titulo {
-  font-size: 3em;
+  font-size: 4rem;
+  margin: 0.5rem 0.5rem;
+
+  background: linear-gradient(
+    to right,
+    orange 20%,
+    #9a239e 40%,
+    #9a239e 60%,
+    orange 80%
+  );
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .subtitulo {
   font-size: 2em;
   width: 100%;
   text-align: center;
+  margin: 1rem 1rem;
 }
 
 .descripcion {
-  font-size: 1em;
-  width: 100%;
+  margin: 1rem 1rem;
+  padding: 1rem 1rem;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 11px 18px 7px -2px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style-type: none;
+  text-align: center;
+  background: #d3cce3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e9e4f0,
+    #d3cce3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e9e4f0,
+    #d3cce3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  border-radius: 15px;
+  padding: 0.8em 0.2em;
+  width: fit-content;
+  margin: 0.5em 0.5em;
+  border: 2px solid white;
+}
+
+span {
+  font-size: smaller;
+  font-weight: bold;
+}
+
+h6 {
+  margin-top: 0.5em;
+  border: 2px solid black;
+  padding: 2%;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.container-edu {
+  padding: 0.5em 1em;
+}
+
+.container-edu > h6 {
+  margin: 1.5em 0;
+}
+
+.container-cursos {
+  padding: 0.5em 1em;
+}
+
+.container-cursos > h6 {
+  margin: 1.5em 0;
+}
+
+.container-info {
+  margin: 0 0;
+  padding: 0 0;
+  box-shadow: 11px 18px 7px -2px rgba(0, 0, 0, 0.1);
+}
+
+.container-tecno {
+  padding: 0 0;
+  box-shadow: 11px 18px 7px -2px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background-color: orange;
+
+  border-radius: 15px;
+  margin: 0.5em 0.5em;
+}
+
+.datos-tecno {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.bloque-tecno {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.card-header {
+  background-color: #9a239e;
+  color: white;
+  border-radius: 15px;
+}
+
+.card-header-sub {
+  background-color: #d519db;
+  color: white;
+  border-radius: 15px;
+}
+
+h5 {
+  text-align: center;
+}
+
+.contacto {
+  background-color: rgba(255, 165, 0, 1);
+  border-radius: 15px;
+  box-shadow: 11px 18px 7px -2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 0 0;
+}
+
+.contacto-titulo {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+p {
+  font-weight: bold;
+}
+
+a {
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  background-color: white;
+  border-radius: 15px;
+  padding: 0.3rem 0.5rem;
+  margin-left: 1rem;
+}
+
+.contacto-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.contacto-data > svg {
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.3rem 0.3rem;
+}
+
+.contenedor-datosContacto {
+  margin: auto;
+  width: 55%;
+}
+
+a:active {
+  color: #d519db;
+}
+
+a:visited {
+  color: #d519db;
+}
+
+a:hover {
+  color: #9a239e;
+}
+
+a:link {
+  color: #d519db;
+}
+
+@media (max-width: 1000px) {
+  .datos-tecno {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    font-size: smaller;
+    align-self: center;
+  }
+
+  a {
+    font-size: small;
+  }
+
+  svg {
+    width: 25px;
+  }
+
+  .contenedor-datosContacto {
+    width: 70%;
+  }
+
+  .mapa {
+    margin-bottom: 1rem;
+  }
 }

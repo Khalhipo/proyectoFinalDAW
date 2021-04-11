@@ -25,6 +25,7 @@ select {
 .card {
   color: black;
   background-color: orange;
+  box-shadow: 11px 18px 7px -2px rgba(0, 0, 0, 0.1);
 }
 
 .list-group-item {
