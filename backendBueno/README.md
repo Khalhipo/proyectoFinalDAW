@@ -15,7 +15,7 @@ cd c:\xampp\htdocs
 Clonar el repositorio de este proyecto con el comando:
 
 ```bash
-git clone https://github.com/Khalhipo/repositorioBueno/tree/master/backendBueno
+git clone https://github.com/Khalhipo/repositorioBueno
 ```
 Ejecutar el programa Xampp Control Panel e iniciar los servicios Apache y MySQL con el botón Start. Una vez iniciado, acceder a [http://localhost/phpmyadmin](http://localhost/phpmyadmin). Crear una nueva base de datos con el nombre `back`. Dentro de esa base de datos importar el archivo **backphp.sql** que creará la estructura de las tablas.
 
