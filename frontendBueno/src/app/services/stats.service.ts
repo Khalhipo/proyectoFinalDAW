@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const url = 'http://localhost/backendphp/stats/';
+const url = 'http://localhost/backendBueno/stats/';
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { EjercicioLista, EjercicioMostrar } from '../interfaces/ejercicio';
 import { Entrenamiento } from '../interfaces/entrenamiento';
 
-const url = 'http://localhost/backendphp/entrenamientos/';
+const url = 'http://localhost/backendBueno/entrenamientos/';
 
 @Injectable({
   providedIn: 'root'

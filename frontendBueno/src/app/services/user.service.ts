@@ -4,7 +4,7 @@ import { Observable, ObservedValueOf } from 'rxjs';
 import { accesoUsuario, User } from '../interfaces/user';
 
 
-const url = 'http://localhost/backendphp/user/';
+const url = 'http://localhost/backendBueno/user/';
 @Injectable({
   providedIn: 'root'
 })

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Mensaje } from '../models/mensaje';
 
-const url = 'http://localhost/backendphp/mensajes/';
+const url = 'http://localhost/backendBueno/mensajes/';
 
 @Injectable({
   providedIn: 'root'
