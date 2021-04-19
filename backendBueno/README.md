@@ -23,15 +23,6 @@ Ejecutar el programa Xampp Control Panel e iniciar los servicios Apache y MySQL 
 
 Rutas actualmente implementadas organizadas por método y funcionalidad.
 
-#### Rutas relacionadas con las notas:
-
-| Método | Ruta | Acción | Requiere JWT |
-| :---: | --- | --- | :---: |
-| **GET** |_localhost/backendphp/notas/_| Listar todas las notas | Opcional |
-| **POST** |_localhost/backendphp/notas/_| Insertar una nota | Opcional |
-| **PUT** |_localhost/backendphp/notas/_| Actualizar una nota | Obligatorio |
-| **DELETE** |_localhost/backendphp/notas/id_| Eliminar una nota | Obligatorio |
-
 #### Rutas relacionadas con el usuario:
 
 | Método | Ruta | Acción | Requiere JWT |
